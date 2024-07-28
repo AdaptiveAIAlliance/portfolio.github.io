@@ -1,3 +1,7 @@
 export default function Hello() {
-  return <p>hello world</p>;
+  return (
+    <div>
+      <p>hello world</p>
+    </div>
+  );
 }
