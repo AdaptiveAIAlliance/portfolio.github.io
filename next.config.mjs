@@ -1,10 +1,10 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+export const config = {
+  isProd: true,
   basePath: "/portfolio.github.io",
-  images: {
-    loader: "custom",
-    loaderFile: "loader/custom-image-loader.js",
-  },
+};
+const nextConfig = {
+  basePath: config.isProd ? config.basePath : "",
   output: "export",
   reactStrictMode: true,
 };
