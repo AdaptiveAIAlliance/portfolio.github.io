@@ -1,4 +1,4 @@
 export const config = {
-  isProd: false,
+  isProd: true,
   basePath: "/portfolio.github.io",
 };
