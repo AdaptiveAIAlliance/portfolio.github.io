@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { assetPathResolver } from "../utils/utils";
 import Header from "@/components/header";
 import { profile } from "../configs/profle_data";
 import Link from "next/link";
