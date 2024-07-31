@@ -1,0 +1,107 @@
+.svgGridIcon {
+  /* display: inline-block; */
+  stroke-width: 2px;
+}
+.svgGridIcon {
+  circle {
+    stroke-width: 2px;
+    opacity: 1;
+    fill: none;
+  }
+  rect {
+    opacity: 0.75;
+    width: 6px;
+    height: 6px;
+    fill: none;
+  }
+}
+
+.svgGridIcon:hover {
+  circle {
+    stroke-width: 2px;
+    opacity: 1;
+    fill: none;
+  }
+  rect {
+    stroke-width: 2px;
+    opacity: 1;
+    fill: none;
+  }
+  .verticalRect {
+    transform: translateY(-12px);
+    height: 30px;
+  }
+  .horizontalRect {
+    transform: translateX(-12px);
+    width: 30px;
+  }
+  .midPoints {
+    opacity: 0;
+  }
+  .cornerPoints {
+    // transform: translateX(-10px);
+    // width: 30px;
+  }
+  :nth-child(3) {
+    transform: translate(15px, -30px);
+  }
+  :nth-child(5) {
+    transform: translate(30px, 15px);
+  }
+  :nth-child(7) {
+    transform: translate(-15px, 30px);
+  }
+  :nth-child(9) {
+    transform: translate(-30px, -15px);
+  }
+}
+.svgGridIcon.active {
+  rotate: 45deg;
+
+  transition: 0.3s;
+  circle {
+    stroke-width: 2px;
+    opacity: 0;
+    fill: none;
+  }
+  rect {
+    stroke-width: 2px;
+    opacity: 1;
+    fill: none;
+  }
+  .verticalRect {
+    transform-origin: center;
+    transform: translateY(-17px);
+    height: 40px;
+  }
+  .horizontalRect {
+    transform-origin: center;
+    transform: translateX(-17px);
+    width: 40px;
+  }
+
+  :nth-child(2) {
+    transform: translate(15px, -30px);
+  }
+  :nth-child(3) {
+    transform: translate(15px, -30px);
+  }
+  :nth-child(4) {
+    transform: translate(30px, 15px);
+  }
+  :nth-child(5) {
+    transform: translate(30px, 15px);
+  }
+  :nth-child(6) {
+    transform: translate(-15px, 30px);
+  }
+  :nth-child(7) {
+    transform: translate(-15px, 30px);
+  }
+  :nth-child(9) {
+    transform: translate(-30px, -15px);
+  }
+  :nth-child(8) {
+    transform: translate(-30px, -15px);
+  }
+}
