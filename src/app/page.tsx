@@ -8,7 +8,7 @@ export default function Home() {
     <>
       <Header />
       <main className="flex text-slate-800   dark:text-slate-300 flex-col items-center justify-between p-24 ">
-        <section className="hero">
+        <section className="min-h-screen">
           <div className="hero-content">
             <h1>Hi, I&apos;m {profile.name}</h1>
             <h2>{profile.tagLine}</h2>
@@ -29,8 +29,8 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <section>
-          <div className="flex flex-col gap-y-4">
+        <section className="min-h-screen">
+          <div className="flex flex-col gap-y-4 w-min-full">
             <h2 className="text-3xl font-bold">Featured skills</h2>
             <ul>
               {profile.skills.map((skill, index) => (
@@ -42,9 +42,25 @@ export default function Home() {
             </ul>
           </div>
         </section>
-        <section>
-          <div className="flex flex-col gap-y-4">
+        <section className="min-h-screen">
+          <div className="flex flex-col gap-y-4 w-min-full">
             <h2 className="text-3xl font-bold">Projects</h2>
+            <ul>
+              {profile.projects.map((project, index) => (
+                <li key={index}>
+                  <h3>{project.title}</h3>
+                  <p>{project.role}</p>
+                  <p>{project.Technologies.join(", ")}</p>
+                  <p>{project.Description}</p>
+                  <Link href={project.Link}>link</Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+        <section className="min-h-screen">
+          <div className="flex flex-col gap-y-4 w-min-full">
+            <h2 className="text-3xl font-bold">Experiences</h2>
             <ul>
               {profile.projects.map((project, index) => (
                 <li key={index}>

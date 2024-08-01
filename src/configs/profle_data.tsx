@@ -127,4 +127,17 @@ export const profile = {
       Link: "",
     },
   ],
+  experiences: [
+    {
+      title: "Software and Web Developer (Full Stack)",
+      company: "XYZ Company",
+      startDate: "Nov 2023",
+      endDate: "Current",
+      tasks: [
+        "Spearheaded the design and development of a comprehensive software ecosystem, including a cross-platform app with messaging capabilities using the XMPP protocol, management portal, and marketing website.",
+        "Enhanced user engagement by 30% through innovative app features and seamless user experience design.",
+        "Developed and implemented analytical solutions to build automated monitoring features, supporting decision-making processes with data-driven insights, leading to a 25% increase in operational efficiency.",
+      ],
+    },
+  ],
 };

@@ -15,7 +15,11 @@ const config: Config = {
       },
     },
   },
+  important: "#__next",
   plugins: [],
+  corePlugins: {
+    preflight: false,
+  },
   darkMode: "class",
 };
 export default config;

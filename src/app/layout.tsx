@@ -20,7 +20,8 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head />
-      <body className={inter.className + " bg-slate-200 dark:bg-slate-950	"}>
+
+      <body className={inter.className + " bg-slate-200 "}>
         <ThemeProvider attribute="class">{children}</ThemeProvider>
       </body>
     </html>
