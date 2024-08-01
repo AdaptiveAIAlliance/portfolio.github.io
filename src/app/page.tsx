@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <>
       <Header />
-      <main className="flex text-slate-800   dark:text-slate-300 flex-col items-center justify-between p-24 ">
+      <main className="flex text-slate-800   dark:text-slate-300 flex-col justify-between p-24 ">
         <section className="min-h-screen">
           <div className="hero-content">
             <h1>Hi, I&apos;m {profile.name}</h1>
