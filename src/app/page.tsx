@@ -16,12 +16,12 @@ export default function Home() {
             <div className="flex flex-col gap-x-3">
               <Link
                 href="#projects"
-                className="text-slate-600 hover:text-lime-400  dark:text-slate-300 dark:hover:text-lime-400"
+                className="text-slate-600 hover:text-slate-500   dark:text-slate-300 dark:hover:text-lime-400"
               >
                 View My Work
               </Link>
               <Link
-                className="text-slate-600 hover:text-lime-400  dark:text-slate-300 dark:hover:text-lime-400"
+                className="text-slate-600 hover:text-slate-500   dark:text-slate-300 dark:hover:text-lime-400"
                 href="#contact"
               >
                 Get in Touch
