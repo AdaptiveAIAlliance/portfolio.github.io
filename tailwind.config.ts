@@ -15,11 +15,11 @@ const config: Config = {
       },
     },
   },
-  important: "#__next",
+  // important: "#__next",
   plugins: [],
-  corePlugins: {
-    preflight: false,
-  },
+  // corePlugins: {
+  //   // preflight: false,
+  // },
   darkMode: "class",
 };
 export default config;
