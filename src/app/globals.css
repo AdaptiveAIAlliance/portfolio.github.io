@@ -39,3 +39,9 @@ body {
     @apply dark:bg-gray-800 bg-white;
   }
 }
+.hover-drop-shadow:hover:is(.dark *) {
+  filter: drop-shadow(0px 0px 24px rgb(190 242 100 / var(--tw-text-opacity)));
+}
+.hover-drop-shadow:hover {
+  filter: drop-shadow(0px 0px 24px rgb(148 163 184 / var(--tw-text-opacity)));
+}

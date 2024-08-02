@@ -24,12 +24,12 @@ const SvgThemeModeIcon: FunctionComponent<SvgThemeModeIcon> = ({
       <title>Theme</title>
       <path
         d="M14.994,7.99a7,7,0,0,1-12.813,3.9,1,1,0,0,1,1.063-1.532,6.139,6.139,0,0,0,1.961.089,6.012,6.012,0,0,0,5.212-4.985,6.067,6.067,0,0,0-.065-2.274A1,1,0,0,1,11.9,2.182,6.985,6.985,0,0,1,14.994,7.99Z"
-        transform-origin="0px 0px"
+        // transform-origin="0px 0px"
         // style="transform: none; transform-origin: 0px 0px;"
       ></path>
       <g
-        transform-origin="0px 0px"
-        // style="transform: translateY(17px); transform-origin: 0px 0px;"
+      // transform-origin="0px 0px"
+      // style="transform: translateY(17px); transform-origin: 0px 0px;"
       >
         <circle cx="8.5" cy="8.5" r="3"></circle>
         {Array.from({ length: 8 }, (v, k) => (

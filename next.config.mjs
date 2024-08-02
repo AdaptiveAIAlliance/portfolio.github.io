@@ -8,6 +8,7 @@ const nextConfig = {
   output: "export",
   reactStrictMode: true,
   pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
+  transpilePackages: ["three"],
 };
 const withMDX = createMDX({
   // Add markdown plugins here, as desired

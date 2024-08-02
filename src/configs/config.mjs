@@ -1,5 +1,5 @@
 export const config = {
-  isProd: true,
+  isProd: false,
   basePath: "/portfolio.github.io",
   mainMeanu: [
     "About",

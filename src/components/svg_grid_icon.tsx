@@ -26,7 +26,7 @@ const SvgGridIcon: FunctionComponent<SvgGridIcon> = ({
         cy="12"
         r="3"
         opacity="0"
-        transform-origin="0px 0px"
+        // transform-origin="0px 0px"
         // style="transform: translateX(-24px) translateY(-24px); transform-origin: 0px 0px;"
       ></circle>
       <circle
@@ -35,7 +35,7 @@ const SvgGridIcon: FunctionComponent<SvgGridIcon> = ({
         cy="12"
         r="3"
         opacity="0"
-        transform-origin="0px 0px"
+        // transform-origin="0px 0px"
         // style="transform: translateX(0px) translateY(-24px); transform-origin: 0px 0px;"
       ></circle>
       <circle
@@ -43,7 +43,7 @@ const SvgGridIcon: FunctionComponent<SvgGridIcon> = ({
         cy="12"
         r="3"
         opacity="0"
-        transform-origin="0px 0px"
+        // transform-origin="0px 0px"
         // style="transform: translateX(24px) translateY(-24px); transform-origin: 0px 0px;"
       ></circle>
       <circle
@@ -52,7 +52,7 @@ const SvgGridIcon: FunctionComponent<SvgGridIcon> = ({
         cy="24"
         r="3"
         opacity="0"
-        transform-origin="0px 0px"
+        // transform-origin="0px 0px"
         // style="transform: translateX(24px) translateY(0px); transform-origin: 0px 0px;"
       ></circle>
       <circle
@@ -60,7 +60,7 @@ const SvgGridIcon: FunctionComponent<SvgGridIcon> = ({
         cy="36"
         r="3"
         opacity="0"
-        transform-origin="0px 0px"
+        // transform-origin="0px 0px"
         // style="transform: translateX(24px) translateY(24px); transform-origin: 0px 0px;"
       ></circle>
       <circle
@@ -69,7 +69,7 @@ const SvgGridIcon: FunctionComponent<SvgGridIcon> = ({
         cy="36"
         r="3"
         opacity="0"
-        transform-origin="0px 0px"
+        // transform-origin="0px 0px"
         // style="transform: translateX(0px) translateY(24px); transform-origin: 0px 0px;"
       ></circle>
       <circle
@@ -77,7 +77,7 @@ const SvgGridIcon: FunctionComponent<SvgGridIcon> = ({
         cy="36"
         r="3"
         opacity="0"
-        transform-origin="0px 0px"
+        // transform-origin="0px 0px"
         // style="transform: translateX(-24px) translateY(24px); transform-origin: 0px 0px;"
       ></circle>
       <circle
@@ -86,7 +86,7 @@ const SvgGridIcon: FunctionComponent<SvgGridIcon> = ({
         cy="24"
         r="3"
         opacity="0"
-        transform-origin="0px 0px"
+        // transform-origin="0px 0px"
         // style="transform: translateX(-24px) translateY(0px); transform-origin: 0px 0px;"
       ></circle>
       <rect
@@ -98,7 +98,7 @@ const SvgGridIcon: FunctionComponent<SvgGridIcon> = ({
         rx="3"
         ry="3"
         opacity="1"
-        transform-origin="0px 0px"
+        // transform-origin="0px 0px"
         // style="transform: translateX(-16.97px) translateY(0px); transform-origin: 0px 0px;"
       ></rect>
       <rect
@@ -110,7 +110,7 @@ const SvgGridIcon: FunctionComponent<SvgGridIcon> = ({
         rx="3"
         ry="3"
         opacity="1"
-        transform-origin="0px 0px"
+        // transform-origin="0px 0px"
         // style="transform: translateX(0px) translateY(-16.97px); transform-origin: 0px 0px;"
       ></rect>
     </svg>
