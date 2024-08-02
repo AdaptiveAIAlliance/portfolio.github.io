@@ -1,3 +1,4 @@
+"use client";
 import * as THREE from "three";
 import { useMemo, useContext, createContext, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
@@ -9,6 +10,7 @@ import {
   Text,
 } from "@react-three/drei";
 import { SpinningBox } from "./SpinningBox";
+import { assetPathResolver } from "@/utils/utils";
 THREE.ColorManagement.legacyMode = false;
 
 /*
@@ -23,7 +25,7 @@ Title: Old Computers
 
 const context = createContext();
 export function Instances({ children, ...props }) {
-  const { nodes } = useGLTF("/computers_1-transformed.glb");
+  const { nodes } = useGLTF(assetPathResolver("/computers_1-transformed.glb"));
   const instances = useMemo(
     () => ({
       Object: nodes.Object_4,

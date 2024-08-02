@@ -20,10 +20,12 @@
     "next": "14.2.5",
     "next-themes": "^0.3.0",
     "react": "^18",
+    "react-aiwriter": "^1.0.0",
     "react-dom": "^18",
     "rehype": "^13.0.1",
     "remark-gfm": "^4.0.0",
-    "three": "^0.167.1"
+    "three": "^0.167.1",
+    "typed.js": "^2.1.0"
   },
   "devDependencies": {
     "@pmndrs/assets": "^1.6.0",
