@@ -14,8 +14,7 @@ import { easing } from "maath";
 import { suspend } from "suspend-react";
 import { Instances, Computers } from "./Computers";
 import { useTheme } from "next-themes";
-type ModelType = any;
-const suzi = import("@pmndrs/assets/models/bunny.glb") as Promise<ModelType>;
+const suzi = import("@pmndrs/assets/models/bunny.glb") as Promise<any>;
 function Box(props: ThreeElements["mesh"]) {
   const meshRef = useRef<THREE.Mesh>(null!);
   const [hovered, setHover] = useState(false);
@@ -36,8 +35,8 @@ function Box(props: ThreeElements["mesh"]) {
   );
 }
 
-function Bun(props) {
-  const { nodes } = useGLTF(suspend(suzi).default);
+function Bun(props: any) {
+  const { nodes } = useGLTF((suspend(suzi) as any).default) as { nodes: any };
   console.log(nodes);
   return (
     <mesh receiveShadow castShadow geometry={nodes.mesh.geometry} {...props}>
@@ -46,7 +45,7 @@ function Bun(props) {
   );
 }
 
-function CameraRig() {
+const CameraRig: React.FC = () => {
   useFrame((state, delta) => {
     easing.damp3(
       state.camera.position,
@@ -60,22 +59,15 @@ function CameraRig() {
     );
     state.camera.lookAt(0, 0, 0);
   });
-}
+
+  return <></>;
+};
 
 const ThreeFiberScene: React.FC = () => {
   const { theme } = useTheme();
 
   const containerRef = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      // const root = document.getElementById("root");
-      // containerRef.current?.appendChild(root);
-      if (containerRef.current !== null) {
-        // createRoot(containerRef.current!).render();
-      }
-    }
-    console.log(theme);
-  }, []);
+
   return (
     <div
       className={`fixed -z-50 min-h-full h-full min-w-full ${
@@ -88,7 +80,7 @@ const ThreeFiberScene: React.FC = () => {
         shadows
         dpr={[1, 1.5]}
         camera={{ position: [-1.5, 1, 5.5], fov: 45, near: 1, far: 20 }}
-        eventSource={containerRef.current}
+        eventSource={containerRef.current ?? undefined}
         eventPrefix="client"
       >
         {/* Lights */}
@@ -113,6 +105,7 @@ const ThreeFiberScene: React.FC = () => {
           <mesh receiveShadow rotation={[-Math.PI / 2, 0, 0]}>
             <planeGeometry args={[50, 50]} />
             <MeshReflectorMaterial
+              mirror={0}
               blur={[300, 30]}
               resolution={2048}
               mixBlur={1}
@@ -139,7 +132,7 @@ const ThreeFiberScene: React.FC = () => {
           />
         </group>
         {/* Postprocessing */}
-        <EffectComposer disableNormalPass>
+        <EffectComposer>
           <Bloom
             luminanceThreshold={0}
             mipmapBlur

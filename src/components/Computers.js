@@ -46,7 +46,7 @@ export function Instances({ children, ...props }) {
   return (
     <Merged castShadow receiveShadow meshes={instances} {...props}>
       {(instances) => (
-        <context.Provider value={instances} children={children} />
+        <context.Provider value={instances}>{children}</context.Provider>
       )}
     </Merged>
   );
@@ -822,7 +822,7 @@ function Leds({ instances }) {
   useMemo(() => {
     nodes.Sphere.material = new THREE.MeshBasicMaterial();
     nodes.Sphere.material.toneMapped = false;
-  }, []);
+  }, [nodes.Sphere]);
   useFrame((state) => {
     ref.current.children.forEach((instance) => {
       const rand = Math.abs(2 + instance.position.x);
