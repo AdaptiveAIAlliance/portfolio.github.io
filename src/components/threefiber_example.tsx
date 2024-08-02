@@ -67,6 +67,7 @@ const ThreeFiberScene: React.FC = () => {
   const { theme } = useTheme();
 
   const containerRef = useRef<HTMLDivElement>(null);
+  console.log(theme);
 
   return (
     <div

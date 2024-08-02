@@ -13,10 +13,9 @@ const ThemeBrightnessButton: FunctionComponent<ThemeBrightnessButton> = ({
   const { theme, setTheme } = useTheme();
   return (
     <button
-      onClick={() => (theme == "dark" ? setTheme("light") : setTheme("dark"))}
-      // className="bg-gray-800 dark:bg-gray-50 transition-all duration-100 text-white dark:text-gray-800 px-8 py-2 text-2xl md:text-4xl rounded-lg "
+      onClick={() => (theme === "dark" ? setTheme("light") : setTheme("dark"))}
     >
-      <SvgThemeModeIcon isActive={theme != "dark"} className={className} />
+      <SvgThemeModeIcon isActive={theme !== "dark"} className={className} />
     </button>
   );
 };
