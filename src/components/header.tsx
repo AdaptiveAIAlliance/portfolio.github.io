@@ -6,6 +6,7 @@ import ThemeBrightnessButton from "./theme_brightness_button";
 import SvgGridIcon from "./svg_grid_icon";
 import { useState } from "react";
 import Image from "next/image";
+import { assetPathResolver } from "@/utils/utils";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,7 +14,7 @@ export default function Header() {
     <header className="flex justify-between min-w-full  px-8 py-4 fixed bg-opacity-20 dark:bg-opacity-20 bg-slate-400 dark:bg-emerald-700 border border-gray-300 border-opacity-20 dark:border-gray-900 z-10">
       <Image
         className="w-12 "
-        src="/logo.png"
+        src={assetPathResolver("/logo.png")}
         width={128}
         height={128}
         alt="wbsite log"
