@@ -9,6 +9,7 @@ const nextConfig = {
   reactStrictMode: true,
   pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
   transpilePackages: ["three"],
+  images: { unoptimized: true },
 };
 const withMDX = createMDX({
   // Add markdown plugins here, as desired

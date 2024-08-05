@@ -1,4 +1,6 @@
 .svgThemeModeIcon {
+  transition: 0.3s;
+
   /* display: inline-block; */
   stroke-width: 2px;
   transform-origin: 0px 0px;
@@ -6,12 +8,16 @@
 }
 .svgThemeModeIcon {
   path {
+    transition: 0.3s;
+
     stroke-width: 2px;
     opacity: 0;
     fill: none;
     transform: translateY(20px);
   }
   g {
+    transition: 0.3s;
+
     opacity: 1;
     fill: none;
   }
@@ -45,12 +51,17 @@
 }
 
 .svgThemeModeIcon.active {
+  transition: 0.3s;
+
   path {
+    transition: 0.3s;
+
     opacity: 1;
     transform: translateY(0);
   }
   g {
     opacity: 0;
+    transition: 0.3s;
 
     transform: translateY(-20px);
   }

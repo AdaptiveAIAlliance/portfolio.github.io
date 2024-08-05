@@ -1,9 +1,12 @@
 .svgGridIcon {
   /* display: inline-block; */
   stroke-width: 2px;
+  transition: 0.3s;
 }
 .svgGridIcon {
   circle {
+    transition: 0.3s;
+
     stroke-width: 2px;
     opacity: 1;
     fill: none;
@@ -18,40 +21,60 @@
 
 .svgGridIcon:hover {
   circle {
+    transition: 0.3s;
+
     stroke-width: 2px;
     opacity: 1;
     fill: none;
   }
   rect {
+    transition: 0.3s;
+
     stroke-width: 2px;
     opacity: 1;
     fill: none;
   }
   .verticalRect {
+    transition: 0.3s;
+
     transform: translateY(-12px);
     height: 30px;
   }
   .horizontalRect {
+    transition: 0.3s;
+
     transform: translateX(-12px);
     width: 30px;
   }
   .midPoints {
+    transition: 0.3s;
+
     opacity: 0;
   }
   .cornerPoints {
+    transition: 0.3s;
+
     // transform: translateX(-10px);
     // width: 30px;
   }
   :nth-child(3) {
+    transition: 0.3s;
+
     transform: translate(15px, -30px);
   }
   :nth-child(5) {
+    transition: 0.3s;
+
     transform: translate(30px, 15px);
   }
   :nth-child(7) {
+    transition: 0.3s;
+
     transform: translate(-15px, 30px);
   }
   :nth-child(9) {
+    transition: 0.3s;
+
     transform: translate(-30px, -15px);
   }
 }
