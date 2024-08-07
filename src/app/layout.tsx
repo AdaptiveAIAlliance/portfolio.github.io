@@ -4,6 +4,8 @@ import { profile } from "../configs/profle_data";
 import { ThemeProvider } from "next-themes";
 
 import "./globals.css";
+import Header from "@/components/header";
+import ThreeFiberScene from "@/components/threefiber_example";
 
 const inter = Inter({ subsets: ["latin"] });
 

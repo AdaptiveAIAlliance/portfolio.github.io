@@ -6,6 +6,7 @@ import Link from "next/link";
 import ThreeScene from "@/components/three_scene";
 import ThreeFiberScene from "@/components/threefiber_example";
 import AIWriter from "react-aiwriter";
+import { TypeAnimation } from "react-type-animation";
 import React, { useState } from "react";
 import Typed from "typed.js";
 import {
@@ -42,14 +43,14 @@ export default function Home() {
   };
   return (
     <>
-      <Header />
       <ThreeFiberScene />
-      <main className="flex text-slate-100   dark:text-emerald-100 flex-col justify-between px-24  ">
+      <Header />
+      <main className="flex text-neutral-900  dark:text-emerald-100 flex-col justify-between sm:px-24 px-8  ">
         <Tabs
           defaultValue="hi"
-          className="min-h-screen flex flex-col justify-center jt align-top py-16 text-neutral-900 max-w-full duration-300"
+          className="min-h-screen flex flex-col justify-start  align-top pt-32 text-neutral-900  max-w-full duration-300"
         >
-          <TabsList className="border-slate-100 border-t border-x rounded-t-3xl p-0 h-16 rounded-b-none  w-fit justify-items-start text-neutral-900 bg-clip-padding backdrop-filter backdrop-blur-xl bg-slate-400 dark:bg-emerald-900 bg-opacity-60 dark:bg-opacity-40 dark:border-neutral-950">
+          <TabsList className="border-slate-100 border-t border-x rounded-t-3xl p-0 h-16  rounded-b-none w-full sm:w-fit justify-items-start text-neutral-900 bg-clip-padding backdrop-filter backdrop-blur-xl bg-slate-400 dark:bg-emerald-900 bg-opacity-60 dark:bg-opacity-40 dark:border-neutral-950">
             <TabsTrigger
               className="border-slate-100  h-full rounded-tl-3xl rounded-tr-none rounded-b-none  data-[state=active]:bg-slate-200  data-[state=active]:text-neutral-900 data-[state=active]:bg-opacity-40 hover:bg-slate-200 hover:bg-opacity-60  hover:data-[state=active]:bg-slate-200 hover:data-[state=active]:bg-opacity-40 dark:text-emerald-100 dark:data-[state=active]:bg-emerald-900/60 dark:hover:data-[state=active]:bg-emerald-900/60 dark:hover:bg-emerald-800/60"
               value="hi"
@@ -79,14 +80,24 @@ export default function Home() {
             className="data-[state=active]:mt-0 duration-300 "
             value="hi"
           >
-            <section>
+            <section className="transition-all duration-300">
               <Card
-                style={{ minHeight: "55vh" }}
-                className=" flex align-middle flex-col justify-evenly p-8 rounded-tl-none rounded-tr-3xl rounded-b-3xl bg-clip-padding backdrop-filter backdrop-blur-xl bg-slate-400 dark:bg-emerald-900 bg-opacity-60 dark:bg-opacity-40 "
+                style={{ minHeight: "60vh" }}
+                className=" flex align-middle flex-col justify-evenly p-8 rounded-t-none sm:rounded-tr-3xl sm:rounded-b-3xl bg-clip-padding backdrop-filter backdrop-blur-xl bg-slate-400 dark:bg-emerald-900 bg-opacity-60 dark:bg-opacity-40 "
               >
-                <h1 className="text-3xl">Hi, I&apos;m {profile.name}</h1>
+                <TypeAnimation
+                  cursor={false}
+                  className="text-3xl"
+                  sequence={[
+                    // Same substring at the start will only be typed out once, initially
+                    `Hi, I'm ${profile.name}`,
+                  ]}
+                  wrapper="h1"
+                  speed={5}
+                  style={{ display: "inline-block" }}
+                  // repeat={Infinity}
+                />
                 <CardContent className="mt-8">
-                  <h2>{profile.tagLine}</h2>
                   <p>{profile.summery}</p>
                 </CardContent>
                 <CardFooter className="flex  gap-x-3">
@@ -104,10 +115,10 @@ export default function Home() {
             className="data-[state=active]:mt-0 duration-300 min-h-96"
             value="skills"
           >
-            <section>
+            <section className="transition-all duration-300">
               <div
-                style={{ minHeight: "55vh" }}
-                className=" flex align-middle flex-col flex-wrap justify-evenly text-neutral-900 text-center  p-8 rounded-tl-none rounded-tr-3xl rounded-b-3xl bg-clip-padding backdrop-filter backdrop-blur-xl bg-slate-400 border border-slate-100 dark:bg-emerald-900 bg-opacity-60 dark:bg-opacity-40 dark:border-neutral-950"
+                style={{ minHeight: "60vh" }}
+                className=" flex align-middle flex-col flex-wrap justify-evenly text-neutral-900 text-center  p-8 rounded-t-none sm:rounded-tr-3xl rounded-b-3xl bg-clip-padding backdrop-filter backdrop-blur-xl bg-slate-400 border border-slate-100 dark:bg-emerald-900 bg-opacity-60 dark:bg-opacity-40 dark:border-neutral-950"
               >
                 <h2 className="text-3xl dark:text-slate-200">
                   Featured skills
@@ -132,7 +143,9 @@ export default function Home() {
                       >
                         <Card className="bg-slate-200/40 dark:bg-emerald-800/40 py-4 ">
                           <CardHeader className="">
-                            <CardTitle> {skill.title}</CardTitle>
+                            <CardTitle className=" leading-8">
+                              {skill.title}
+                            </CardTitle>
                           </CardHeader>
 
                           <CardContent className="p-6 flex gap-2 flex-wrap justify-center align-middle">
@@ -144,8 +157,8 @@ export default function Home() {
                       </CarouselItem>
                     ))}
                   </CarouselContent>
-                  <CarouselPrevious className="dark:bg-emerald-100/60" />
-                  <CarouselNext className="dark:bg-emerald-100/60" />
+                  <CarouselPrevious className="animate-pulse dark:bg-emerald-100/60" />
+                  <CarouselNext className="animate-pulse dark:bg-emerald-100/60" />
                 </Carousel>
               </div>
             </section>
@@ -154,12 +167,12 @@ export default function Home() {
             className="data-[state=active]:mt-0 duration-300 min-h-96"
             value="projects"
           >
-            <section>
+            <section className="transition-all duration-300">
               <div
-                style={{ minHeight: "55vh" }}
-                className="flex align-middle flex-col justify-center text-neutral-900 text-center  p-8 rounded-tl-none rounded-tr-3xl rounded-b-3xl bg-clip-padding backdrop-filter backdrop-blur-xl bg-slate-400 border border-slate-100 dark:bg-emerald-900 bg-opacity-60 dark:bg-opacity-40 dark:border-neutral-950"
+                style={{ minHeight: "60vh" }}
+                className="flex align-middle  flex-col justify-center text-neutral-900 text-center  p-8 rounded-t-none sm:rounded-tr-3xl rounded-b-3xl bg-clip-padding backdrop-filter backdrop-blur-xl bg-slate-400 border border-slate-100 dark:bg-emerald-900 bg-opacity-60 dark:bg-opacity-40 dark:border-neutral-950"
               >
-                <h2 className="text-3xl  dark:text-slate-200">Projects</h2>
+                <h2 className="text-3xl dark:text-slate-200">Projects</h2>
                 <Carousel
                   opts={{
                     align: "start",
@@ -180,7 +193,9 @@ export default function Home() {
                       >
                         <Card className="bg-slate-200/40 dark:bg-emerald-800/40 py-4 ">
                           <CardHeader>
-                            <CardTitle>{project.title}</CardTitle>
+                            <CardTitle className=" leading-8">
+                              {project.title}
+                            </CardTitle>
                             <CardDescription className="py-2 dark:text-emerald-200">
                               {project.role}
                             </CardDescription>
@@ -189,7 +204,6 @@ export default function Home() {
                             {project.Description}
                             {project.Outcome}
                           </CardContent>
-
                           <CardFooter className="justify-center">
                             <div className=" text-center  flex  gap-2 flex-wrap justify-center align-middle">
                               {project.Technologies.map((s, i) => (
@@ -201,8 +215,8 @@ export default function Home() {
                       </CarouselItem>
                     ))}
                   </CarouselContent>
-                  <CarouselPrevious className="dark:bg-emerald-100/60" />
-                  <CarouselNext className="dark:bg-emerald-100/60" />
+                  <CarouselPrevious className="animate-pulse dark:bg-emerald-100/60" />
+                  <CarouselNext className="animate-pulse dark:bg-emerald-100/60" />
                 </Carousel>
               </div>
             </section>
@@ -211,10 +225,10 @@ export default function Home() {
             className="data-[state=active]:mt-0 duration-300 min-h-96"
             value="exp"
           >
-            <section>
+            <section className="transition-all duration-300">
               <div
-                style={{ minHeight: "55vh" }}
-                className="flex align-middle flex-col justify-center text-neutral-900 text-center  p-8 rounded-tl-none rounded-tr-3xl rounded-b-3xl bg-clip-padding backdrop-filter backdrop-blur-xl bg-slate-400 border border-slate-100 dark:bg-emerald-900 bg-opacity-60 dark:bg-opacity-40 dark:border-neutral-950"
+                style={{ minHeight: "60vh" }}
+                className="flex align-middle flex-col justify-center text-neutral-900 text-center  p-8 rounded-t-none sm:rounded-tr-3xl rounded-b-3xl bg-clip-padding backdrop-filter backdrop-blur-xl bg-slate-400 border border-slate-100 dark:bg-emerald-900 bg-opacity-60 dark:bg-opacity-40 dark:border-neutral-950"
               >
                 <h2 className="text-3xl  dark:text-slate-200">Experiences</h2>
                 <Carousel
@@ -252,8 +266,8 @@ export default function Home() {
                       </CarouselItem>
                     ))}
                   </CarouselContent>
-                  <CarouselPrevious className="dark:bg-emerald-100/60" />
-                  <CarouselNext className="dark:bg-emerald-100/60" />
+                  <CarouselPrevious className="animate-pulse dark:bg-emerald-100/60" />
+                  <CarouselNext className="animate-pulse dark:bg-emerald-100/60" />
                 </Carousel>
               </div>
             </section>
