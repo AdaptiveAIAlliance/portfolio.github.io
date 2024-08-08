@@ -20,6 +20,9 @@ export function getSortedPostsData() {
     // Combine the data with the id
     return {
       id,
+      title: matterResult.data.title,
+      featImage: matterResult.data.featImage,
+      intro: matterResult.data.intro,
       ...matterResult.data,
     };
   });

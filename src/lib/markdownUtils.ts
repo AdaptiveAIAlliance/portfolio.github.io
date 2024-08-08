@@ -20,6 +20,8 @@ export function getAllPostIds() {
 
 export async function getPostData(id: string) {
   const fullPath = path.join(contentDirectory, `${id}.md`);
+  console.log(fullPath);
+
   const fileContents = fs.readFileSync(fullPath, "utf8");
 
   const matterResult = matter(fileContents);
@@ -33,6 +35,7 @@ export async function getPostData(id: string) {
     id,
     contentHtml,
     title: matterResult.data.title,
+    featImage: matterResult.data.featImage,
     ...matterResult.data,
   };
 }
