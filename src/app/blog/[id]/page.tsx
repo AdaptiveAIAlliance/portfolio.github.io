@@ -10,8 +10,14 @@ export async function generateStaticParams() {
   }));
 }
 
+type PostData = {
+  id: string;
+  title: string;
+  contentHtml: string;
+};
+
 export default async function PostPage({ params }: { params: { id: string } }) {
-  const postData = await getPostData(params.id);
+  const postData: PostData = await getPostData(params.id);
 
   return (
     <>

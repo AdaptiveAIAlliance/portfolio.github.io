@@ -8,7 +8,6 @@ const contentDirectory = path.join(process.cwd(), "content", "posts");
 
 export function getAllPostIds() {
   const fileNames = fs.readdirSync(contentDirectory);
-  console.log(fileNames);
 
   return fileNames.map((fileName) => {
     return {
@@ -33,6 +32,7 @@ export async function getPostData(id: string) {
   return {
     id,
     contentHtml,
+    title: matterResult.data.title,
     ...matterResult.data,
   };
 }
