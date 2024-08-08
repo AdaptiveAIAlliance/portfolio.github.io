@@ -13,6 +13,7 @@
     "@mdx-js/react": "^3.0.1",
     "@next/mdx": "^14.2.5",
     "@radix-ui/react-accordion": "^1.2.0",
+    "@radix-ui/react-dialog": "^1.1.1",
     "@radix-ui/react-slot": "^1.1.0",
     "@radix-ui/react-tabs": "^1.1.0",
     "@react-three/drei": "^9.109.2",
@@ -40,7 +41,8 @@
     "tailwind-merge": "^2.4.0",
     "tailwindcss-animate": "^1.0.7",
     "three": "^0.167.1",
-    "typed.js": "^2.1.0"
+    "typed.js": "^2.1.0",
+    "vaul": "^0.9.1"
   },
   "devDependencies": {
     "@pmndrs/assets": "^1.6.0",

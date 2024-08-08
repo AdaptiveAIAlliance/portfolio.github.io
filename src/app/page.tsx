@@ -31,6 +31,16 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import Autoplay from "embla-carousel-autoplay";
@@ -104,9 +114,25 @@ export default function Home() {
                   <Button>
                     <Link href="#projects">View My Work</Link>
                   </Button>
-                  <Button>
-                    <Link href="#contact">Get in Touch</Link>
-                  </Button>
+                  <Drawer>
+                    <DrawerTrigger>
+                      <Button>Get in Touch</Button>
+                    </DrawerTrigger>
+                    <DrawerContent className="bg-slate-400 dark:bg-emerald-900 bg-opacity-60 dark:bg-opacity-40 rounded-t-3xl">
+                      <DrawerHeader>
+                        <DrawerTitle>Are you absolutely sure?</DrawerTitle>
+                        <DrawerDescription>
+                          This action cannot be undone.
+                        </DrawerDescription>
+                      </DrawerHeader>
+                      <DrawerFooter>
+                        <Button>Submit</Button>
+                        <DrawerClose>
+                          <Button variant="outline">Cancel</Button>
+                        </DrawerClose>
+                      </DrawerFooter>
+                    </DrawerContent>
+                  </Drawer>
                 </CardFooter>{" "}
               </Card>
             </section>
