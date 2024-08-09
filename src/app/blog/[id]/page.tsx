@@ -63,7 +63,7 @@ export default async function PostPage({ params }: { params: { id: string } }) {
           </h1>
           <div className="px-8 py-4  flex flex-row flex-wrap gap-4 justify-start">
             <div className=" flex flex-row flex-wrap gap-2">
-              {postData.categories.splice(0, 3).map((c: string) => (
+              {postData.categories.map((c: string) => (
                 <Link
                   className={badgeVariants({ variant: "default" })}
                   key={c}
@@ -74,7 +74,7 @@ export default async function PostPage({ params }: { params: { id: string } }) {
               ))}
             </div>
             <div className=" flex flex-row flex-wrap gap-2">
-              {postData.tags.splice(0, 2).map((t: string) => (
+              {postData.tags.map((t: string) => (
                 <Link
                   className={badgeVariants({ variant: "secondary" })}
                   key={t}
