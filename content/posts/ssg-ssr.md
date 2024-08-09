@@ -2,8 +2,9 @@
 title: "When to Use Static Generation v.s. Server-side Rendering"
 date: "2020-01-02"
 tags: ["Tag1", "Tag2", "Tag3"]
-categories: ["Cat1", "Cat2", "Cat3"]
+categories: ["Cat1", "Cat2", "Cat4"]
 featImage: "test.png"
+alt: "test"
 intro: "We recommend using **Static Generation** (with and without data) whenever possible because your page can "
 ---
 

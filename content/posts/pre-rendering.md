@@ -1,9 +1,10 @@
 ---
 title: "Two Forms of Pre-rendering"
 date: "2020-01-01"
-tags: ["Tag1", "Tag2", "Tag3"]
-categories: ["Cat1", "Cat2", "Cat3"]
+tags: ["Tag1", "Tag2", "Tag3", "Tag4"]
+categories: ["Cat1", "Cat2", "Cat3", "Cat5"]
 featImage: "test.png"
+alt: "test"
 intro: "Next.js has two forms of pre-rendering: **Static Generation** and **Server-side Rendering**. The difference is "
 ---
 

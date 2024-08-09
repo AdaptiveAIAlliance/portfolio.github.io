@@ -4,7 +4,14 @@ import ThreeFiberScene from "@/components/threefiber_example";
 import Header from "@/components/header";
 
 import { getSortedPostsData } from "../../lib/posts";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -15,6 +22,12 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import { assetPathResolver } from "@/utils/utils";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { badgeVariants } from "@/components/ui/badge";
+import BlogCards from "@/components/blogCards";
+
 // export async function getStaticProps() {
 //   const allPostsData = getSortedPostsData();
 //   return {
@@ -33,6 +46,7 @@ async function getPosts() {
 
 export default async function PostsPage() {
   const posts = await getPosts();
+
   return (
     <>
       <ThreeFiberScene />
@@ -53,31 +67,56 @@ export default async function PostsPage() {
               </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>
-          <ol
-            className="sm:m-8 flex sm:flex-row flex-col gap-y-4 sm:p-8 p-4 justify-center items-start"
+          <BlogCards posts={posts}></BlogCards>
+          {/* <ol
+            className="sm:m-8 flex sm:flex-row flex-wrap flex-col gap-y-4 sm:p-8 py-4 px-0 justify-center items-center"
             style={{ gap: "1rem" }}
           >
             {posts.map((post) => (
               <li key={post.id} className="">
                 <Link className="" href={`blog/${post.id}`}>
-                  <Card className="bg-slate-600/20 min-h-72 overflow-auto rounded-2xl hover:bg-slate-200 hover:bg-opacity-60 duration-300 sm:w-80 hover:shadow-lg hover:shadow-slate-200/40 ">
+                  <Card className="bg-slate-600/20 min-h-72 overflow-auto rounded-2xl hover:bg-slate-200 hover:bg-opacity-60 duration-300 max-w-80 hover:shadow-lg hover:shadow-slate-200/40 ">
                     <CardHeader className="p-0 rounded-2xl">
                       <Image
                         width={320}
                         height={320}
-                        src={"blog/" + post.featImage}
-                        alt="test"
+                        src={assetPathResolver("/blog/" + post.featImage)}
+                        alt={post.alt}
                       />
-                      <CardTitle className="min-h-28 p-4">
+                      <CardTitle className="leading-8 min-h-32 px-4 py-4">
                         {post.title}
                       </CardTitle>
-                    </CardHeader>
+                    </CardHeader>{" "}
+                    <CardFooter className="p-0 px-4 pb-2 flex flex-row flex-wrap gap-4 justify-between">
+                      <div className=" flex flex-row flex-wrap gap-2">
+                        {post.categories.splice(0, 3).map((c: string) => (
+                          <Link
+                            className={badgeVariants({ variant: "default" })}
+                            key={c}
+                            href={`/category/${c}`}
+                          >
+                            {c}
+                          </Link>
+                        ))}
+                      </div>
+                      <div className=" flex flex-row flex-wrap gap-2">
+                        {post.tags.splice(0, 2).map((t: string) => (
+                          <Link
+                            className={badgeVariants({ variant: "secondary" })}
+                            key={t}
+                            href={`/tag/${t}`}
+                          >
+                            {t}
+                          </Link>
+                        ))}
+                      </div>
+                    </CardFooter>
                     <CardContent className="p-4">{post.intro}</CardContent>
                   </Card>
                 </Link>
               </li>
             ))}
-          </ol>
+          </ol> */}
         </section>
 
         {/* <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>

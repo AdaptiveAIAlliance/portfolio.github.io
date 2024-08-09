@@ -1,5 +1,5 @@
 import ThreeFiberScene from "@/components/threefiber_example";
-import { getPostData, getAllPostIds } from "../../../lib/markdownUtils";
+import { getPostData, getAllPostIds } from "../../../lib/posts";
 import Header from "@/components/header";
 import Image from "next/image";
 import {
@@ -11,6 +11,8 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import Link from "next/link";
+import { assetPathResolver } from "@/utils/utils";
+import { badgeVariants } from "@/components/ui/badge";
 export async function generateStaticParams() {
   const paths = getAllPostIds();
 
@@ -19,16 +21,8 @@ export async function generateStaticParams() {
   }));
 }
 
-type PostData = {
-  id: string;
-  title: string;
-  featImage: string;
-  contentHtml: string;
-};
-
 export default async function PostPage({ params }: { params: { id: string } }) {
-  const postData: PostData = await getPostData(params.id);
-  console.log(postData);
+  const postData: post = await getPostData(params.id);
 
   return (
     <>
@@ -41,13 +35,10 @@ export default async function PostPage({ params }: { params: { id: string } }) {
               className="w-full m-auto -translate-y-1/2"
               width={320}
               height={320}
-              src={postData.featImage}
-              alt="test"
-            />{" "}
-          </div>
-          <h1 className="text-2xl p-4  dark:text-emerald-100 ">
-            {postData.title}
-          </h1>
+              src={assetPathResolver(`/blog/${postData.featImage}`)}
+              alt={postData.alt}
+            />
+          </div>{" "}
           <Breadcrumb className="mx-8">
             <BreadcrumbList className=" text-neutral-900 dark:text-emerald-100 m-4">
               <BreadcrumbItem>
@@ -67,6 +58,33 @@ export default async function PostPage({ params }: { params: { id: string } }) {
               </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>
+          <h1 className="text-2xl p-4  dark:text-emerald-100 ">
+            {postData.title}
+          </h1>
+          <div className="px-8 py-4  flex flex-row flex-wrap gap-4 justify-start">
+            <div className=" flex flex-row flex-wrap gap-2">
+              {postData.categories.splice(0, 3).map((c: string) => (
+                <Link
+                  className={badgeVariants({ variant: "default" })}
+                  key={c}
+                  href={`/category/${c}`}
+                >
+                  {c}
+                </Link>
+              ))}
+            </div>
+            <div className=" flex flex-row flex-wrap gap-2">
+              {postData.tags.splice(0, 2).map((t: string) => (
+                <Link
+                  className={badgeVariants({ variant: "secondary" })}
+                  key={t}
+                  href={`/tag/${t}`}
+                >
+                  {t}
+                </Link>
+              ))}
+            </div>
+          </div>
           <div
             className="px-8 pb-8  dark:text-emerald-100 "
             dangerouslySetInnerHTML={{ __html: postData.contentHtml }}
