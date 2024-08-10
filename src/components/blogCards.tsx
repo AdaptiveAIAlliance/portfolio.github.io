@@ -26,8 +26,6 @@ export default function BlogCards(prop: Props): ReactElement {
     >
       {posts.map((post) => (
         <li key={post.id} className="">
-          <Link className="" href={`blog/${post.id}`}></Link>
-
           <Card className="bg-slate-600/20 min-h-72 overflow-auto rounded-2xl hover:bg-slate-200 hover:bg-opacity-40 duration-300 max-w-80 hover:shadow-lg hover:shadow-slate-200/40 ">
             <Link className="" href={`/blog/${post.id}`}>
               <CardHeader className="p-0 rounded-2xl">
@@ -67,8 +65,10 @@ export default function BlogCards(prop: Props): ReactElement {
                     </Link>
                   ))}
                 </div>
-              </div>
-              {post.intro}
+              </div>{" "}
+              <Link className="w-full" href={`blog/${post.id}`}>
+                {post.intro}
+              </Link>
             </CardContent>
           </Card>
         </li>
