@@ -18,7 +18,6 @@ type Props = {
 
 export default function BlogCards(prop: Props): ReactElement {
   const posts = prop.posts;
-  console.log(posts);
 
   return (
     <ol
@@ -29,7 +28,7 @@ export default function BlogCards(prop: Props): ReactElement {
         <li key={post.id} className="">
           <Link className="" href={`blog/${post.id}`}></Link>
 
-          <Card className="bg-slate-600/20 min-h-72 overflow-auto rounded-2xl hover:bg-slate-200 hover:bg-opacity-60 duration-300 max-w-80 hover:shadow-lg hover:shadow-slate-200/40 ">
+          <Card className="bg-slate-600/20 min-h-72 overflow-auto rounded-2xl hover:bg-slate-200 hover:bg-opacity-40 duration-300 max-w-80 hover:shadow-lg hover:shadow-slate-200/40 ">
             <Link className="" href={`/blog/${post.id}`}>
               <CardHeader className="p-0 rounded-2xl">
                 <Image

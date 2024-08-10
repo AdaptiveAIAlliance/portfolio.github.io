@@ -1,3 +1,13 @@
+type postAttributes = {
+  title: string;
+  featImage: string;
+  alt: string;
+  intro: string;
+  categories: string[];
+  date: string;
+  tags: string[];
+};
+
 type post = {
   id: string;
   title: string;
@@ -20,3 +30,9 @@ type posts = {
   date: string;
   tags: string[];
 }[];
+type frontMatterResult = {
+  attributes: postAttributes;
+  body: string;
+  bodyBegin: number;
+  frontmatter: string;
+};

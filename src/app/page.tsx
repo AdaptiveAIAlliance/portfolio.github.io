@@ -60,7 +60,7 @@ export default function Home() {
           defaultValue="hi"
           className="min-h-screen flex flex-col justify-start  align-top pt-32 text-neutral-900  max-w-full duration-300"
         >
-          <TabsList className="border-slate-100 border-t border-x rounded-t-3xl p-0 h-16  rounded-b-none w-full sm:w-fit justify-items-start text-neutral-900 bg-clip-padding backdrop-filter backdrop-blur-xl bg-slate-400 dark:bg-emerald-900 bg-opacity-60 dark:bg-opacity-40 dark:border-neutral-950">
+          <TabsList className="flex flex-col sm:block border-slate-100 border-t border-x rounded-t-3xl p-0 h-16  rounded-b-none w-full sm:w-fit justify-items-start text-neutral-900 bg-clip-padding backdrop-filter backdrop-blur-xl bg-slate-400 dark:bg-emerald-900 bg-opacity-60 dark:bg-opacity-40 dark:border-neutral-950">
             <TabsTrigger
               className="border-slate-100  h-full rounded-tl-3xl rounded-tr-none rounded-b-none  data-[state=active]:bg-slate-200  data-[state=active]:text-neutral-900 data-[state=active]:bg-opacity-40 hover:bg-slate-200 hover:bg-opacity-60  hover:data-[state=active]:bg-slate-200 hover:data-[state=active]:bg-opacity-40 dark:text-emerald-100 dark:data-[state=active]:bg-emerald-900/60 dark:hover:data-[state=active]:bg-emerald-900/60 dark:hover:bg-emerald-800/60"
               value="hi"

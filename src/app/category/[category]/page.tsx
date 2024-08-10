@@ -20,8 +20,8 @@ import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { assetPathResolver } from "@/utils/utils";
 import BlogCards from "@/components/blogCards";
-export function generateStaticParams() {
-  const paths = getCategories();
+export async function generateStaticParams() {
+  const paths = await getCategories();
 
   return paths.map((path) => ({
     category: path,
@@ -34,7 +34,7 @@ export default async function CategoryPage({
   params: { category: string };
 }) {
   const category = params.category;
-  const postsData: posts = getSortedPostsData();
+  const postsData: posts = await getSortedPostsData();
 
   return (
     <>

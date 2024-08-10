@@ -21,8 +21,9 @@ import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { assetPathResolver } from "@/utils/utils";
 import BlogCards from "@/components/blogCards";
-export function generateStaticParams() {
-  const paths = getTags();
+import { useEffect, useState } from "react";
+export async function generateStaticParams() {
+  const paths = await getTags();
 
   return paths.map((path) => ({
     tag: path,
@@ -31,9 +32,11 @@ export function generateStaticParams() {
 
 export default async function TagPage({ params }: { params: { tag: string } }) {
   const tag = params.tag;
-  const postsData: posts = getSortedPostsData();
+  let postsData: posts = await getSortedPostsData();
 
-  const filteredPost: posts = postsData.filter((p) => p.tags.includes(tag));
+  console.log("postsData[0].tags");
+  console.log(postsData[0].tags);
+
   return (
     <>
       <ThreeFiberScene />
@@ -60,7 +63,9 @@ export default async function TagPage({ params }: { params: { tag: string } }) {
               </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>
-          <BlogCards posts={filteredPost}></BlogCards>
+          <BlogCards
+            posts={postsData.filter((p) => p.tags.includes(tag))}
+          ></BlogCards>
         </section>
       </main>
     </>
