@@ -59,6 +59,12 @@ export default async function TagPage({ params }: { params: { tag: string } }) {
               </BreadcrumbItem>
               <BreadcrumbSeparator />
               <BreadcrumbItem>
+                <BreadcrumbPage className="hover:text-neutral-400">
+                  <Link href="/tag">tags</Link>
+                </BreadcrumbPage>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
                 <BreadcrumbPage>{tag}</BreadcrumbPage>
               </BreadcrumbItem>
             </BreadcrumbList>

@@ -16,8 +16,8 @@ type Props = {
   posts: posts;
 };
 
-export default function BlogCards(prop: Props): ReactElement {
-  const posts = prop.posts;
+export default function BlogCards(props: Props): ReactElement {
+  const posts = props.posts;
 
   return (
     <ol

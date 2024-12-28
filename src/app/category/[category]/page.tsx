@@ -58,6 +58,12 @@ export default async function CategoryPage({
               </BreadcrumbItem>
               <BreadcrumbSeparator />
               <BreadcrumbItem>
+                <BreadcrumbPage className="hover:text-neutral-400">
+                  <Link href="/category">categories</Link>
+                </BreadcrumbPage>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
                 <BreadcrumbPage>{category}</BreadcrumbPage>
               </BreadcrumbItem>
             </BreadcrumbList>

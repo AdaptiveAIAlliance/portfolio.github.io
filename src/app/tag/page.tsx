@@ -50,7 +50,7 @@ export default async function CategoryPage() {
               </BreadcrumbItem>
               <BreadcrumbSeparator />
               <BreadcrumbItem>
-                <BreadcrumbPage>categories</BreadcrumbPage>
+                <BreadcrumbPage>tags</BreadcrumbPage>
               </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>
