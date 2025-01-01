@@ -112,7 +112,7 @@ export default function Home() {
             <BasicParallax>
               <div className=" h-screen ">
                 <CardHeader className="">
-                  <CardTitle className=" leading-8">test</CardTitle>
+                  <CardTitle className=" leading-8">test pages</CardTitle>
                 </CardHeader>
                 <CardContent className="p-6 ">test</CardContent>{" "}
               </div>
