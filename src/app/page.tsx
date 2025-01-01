@@ -52,6 +52,7 @@ export default function Home() {
   const onTabChange = (value: string) => {
     setTab(value);
   };
+
   return (
     <>
       <ThreeFiberScene />

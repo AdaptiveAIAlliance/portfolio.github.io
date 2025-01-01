@@ -67,13 +67,16 @@ const ThreeFiberScene: React.FC = () => {
   const { theme } = useTheme();
 
   const containerRef = useRef<HTMLDivElement>(null);
+  console.log("theme from threescene");
   console.log(theme);
-
+  useEffect(() => {
+    theme === "dark"
+      ? containerRef.current?.classList.remove("grayscale")
+      : containerRef.current?.classList.add("grayscale");
+  }, [theme]);
   return (
     <div
-      className={`fixed -z-50 min-h-full h-full min-w-full ${
-        theme === "dark" ? "" : "grayscale"
-      }`}
+      className={`fixed -z-50 min-h-full h-full min-w-full`}
       id="root"
       ref={containerRef}
     >

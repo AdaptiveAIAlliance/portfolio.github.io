@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { config } from "../configs/config.mjs";
 import SvgGridIcon from "./svg_grid_icon";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { assetPathResolver } from "@/utils/utils";
 import { useTheme } from "next-themes";
@@ -12,6 +12,14 @@ import AnimatedCursor from "react-animated-cursor";
 export default function Header() {
   const { theme, setTheme } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
+  console.log("theme from header");
+  console.log(theme);
+  useEffect(() => {
+    if (theme !== "undefined") {
+      theme !== "dark" ? setTheme("light") : setTheme("dark");
+    }
+  }, []);
+
   return (
     <>
       <header className="flex justify-between min-w-full  px-8 py-4 fixed bg-opacity-20 dark:bg-opacity-20 bg-slate-400 dark:bg-emerald-700 border border-gray-300 border-opacity-20 dark:border-gray-900 z-10">
@@ -27,7 +35,6 @@ export default function Header() {
             isOpen ? "after:h-screen " : "after:h-24 after:pb-4"
           }`}
         >
-          {" "}
           <button
             onClick={() => {
               console.log("tsetet", theme);
