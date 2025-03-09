@@ -1,30 +1,11 @@
 // "use client";
-import Image from "next/image";
 import Header from "@/components/header";
-import { profile } from "../configs/profle_data";
 
 import ThreeFiberScene from "@/components/threefiber_example";
 
 import React from "react";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
+import { Card, CardHeader } from "@/components/ui/card";
 
-import { Badge } from "@/components/ui/badge";
-import Autoplay from "embla-carousel-autoplay";
-import BasicParallax from "@/components/basicParallax";
 import { getSortedPostsData } from "@/lib/posts";
 import BlogCards from "@/components/blogCards";
 async function getPosts() {
