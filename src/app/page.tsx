@@ -15,20 +15,6 @@ async function getPosts() {
   return allPostsData;
 }
 export default async function Home() {
-  // const [postsData, setPostsData] = useState<posts>([]);
-  // // let posts;
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const data = await getPosts();
-  //     console.log("data from");
-  //     console.log(data);
-
-  //     setPostsData(data);
-  //     setTimeout(async () => {}, 3000);
-  //   };
-
-  //   fetchData();
-  // }, []);
   const postsData = await getPosts();
   return (
     <>
