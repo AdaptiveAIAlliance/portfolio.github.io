@@ -1,19 +1,10 @@
 import React from "react";
-import styles from "../page.module.css";
 import ThreeFiberScene from "@/components/threefiber_example";
 import Header from "@/components/header";
 
 import { getSortedPostsData } from "../../lib/posts";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+
 import Link from "next/link";
-import Image from "next/image";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -22,10 +13,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import { assetPathResolver } from "@/utils/utils";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { badgeVariants } from "@/components/ui/badge";
+
 import BlogCards from "@/components/blogCards";
 
 // export async function getStaticProps() {
@@ -57,8 +45,10 @@ export default async function PostsPage() {
           <Breadcrumb className="mx-8">
             <BreadcrumbList className=" text-neutral-900 dark:text-emerald-100">
               <BreadcrumbItem>
-                <BreadcrumbPage className="hover:text-neutral-400">
-                  <Link href="/">Home</Link>
+                <BreadcrumbPage>
+                  <BreadcrumbLink className="hover:text-neutral-400" asChild>
+                    <Link href="/">Home</Link>
+                  </BreadcrumbLink>
                 </BreadcrumbPage>
               </BreadcrumbItem>
               <BreadcrumbSeparator />

@@ -1,3 +1,4 @@
+"use server";
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
@@ -8,7 +9,7 @@ import { readdir, readFile } from "fs/promises";
 import fm from "front-matter";
 const postsDirectory = path.join(process.cwd(), "content", "posts");
 
-export function getAllPostIds() {
+export async function getAllPostIds() {
   const fileNames = fs.readdirSync(postsDirectory);
 
   return fileNames.map((fileName) => {
@@ -43,6 +44,8 @@ export async function getSortedPostsData() {
         id,
         title: matterResult.attributes.title,
         featImage: matterResult.attributes.featImage,
+        author: matterResult.attributes.author,
+        authorImage: matterResult.attributes.authorImage,
         alt: matterResult.attributes.alt,
         intro: matterResult.attributes.intro,
         categories: matterResult.attributes.categories,
@@ -104,6 +107,8 @@ export async function getPostData(id: string) {
     title: matterResult.attributes.title,
     intro: matterResult.attributes.intro,
     featImage: matterResult.attributes.featImage,
+    author: matterResult.attributes.author,
+    authorImage: matterResult.attributes.authorImage,
     alt: matterResult.attributes.alt,
     categories: matterResult.attributes.categories,
     tags: matterResult.attributes.tags,

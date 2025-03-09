@@ -7,6 +7,8 @@ tags:
 
 categories: ["Cat1", "Cat2", "Cat4"]
 featImage: "test.png"
+author: "John Duo"
+authorImage: "/AAA_profile_pic.png"
 alt: "test"
 intro: "We recommend using **Static Generation** (with and without data) whenever possible because your page can "
 ---

@@ -6,6 +6,7 @@ import { ThemeProvider } from "next-themes";
 import "./globals.css";
 import Header from "@/components/header";
 import ThreeFiberScene from "@/components/threefiber_example";
+import { StoreProvider } from "./StoreProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,12 +21,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <head />
+    <StoreProvider>
+      <html lang="en" suppressHydrationWarning>
+        <head />
 
-      <body className={inter.className + " bg-neutral-900 "}>
-        <ThemeProvider attribute="class">{children}</ThemeProvider>
-      </body>
-    </html>
+        <body className={inter.className + " bg-neutral-900 "}>
+          <ThemeProvider attribute="class">{children}</ThemeProvider>
+        </body>
+      </html>
+    </StoreProvider>
   );
 }

@@ -1,14 +1,11 @@
-"use client";
+// "use client";
 import Image from "next/image";
 import Header from "@/components/header";
 import { profile } from "../configs/profle_data";
-import Link from "next/link";
-import ThreeScene from "@/components/three_scene";
+
 import ThreeFiberScene from "@/components/threefiber_example";
-import AIWriter from "react-aiwriter";
-import { TypeAnimation } from "react-type-animation";
-import React, { useState } from "react";
-import Typed from "typed.js";
+
+import React from "react";
 import {
   Card,
   CardContent,
@@ -17,7 +14,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Carousel,
   CarouselContent,
@@ -25,50 +21,55 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from "@/components/ui/drawer";
-import { Button } from "@/components/ui/button";
+
 import { Badge } from "@/components/ui/badge";
 import Autoplay from "embla-carousel-autoplay";
-import BasicParallax from "@/components/BasicParallax";
+import BasicParallax from "@/components/basicParallax";
+import { getSortedPostsData } from "@/lib/posts";
+import BlogCards from "@/components/blogCards";
+async function getPosts() {
+  const allPostsData = getSortedPostsData();
 
-export default function Home() {
-  const [tab, setTab] = useState("hi");
+  // const res = await fetch("https://jsonplaceholder.typicode.com/posts");
+  return allPostsData;
+}
+export default async function Home() {
+  // const [postsData, setPostsData] = useState<posts>([]);
+  // // let posts;
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const data = await getPosts();
+  //     console.log("data from");
+  //     console.log(data);
 
-  const onTabChange = (value: string) => {
-    setTab(value);
-  };
+  //     setPostsData(data);
+  //     setTimeout(async () => {}, 3000);
+  //   };
 
+  //   fetchData();
+  // }, []);
+  const postsData = await getPosts();
   return (
     <>
       <ThreeFiberScene />
       <Header />
+
       <main className="flex text-neutral-900 min-h-screen   dark:text-emerald-100 flex-col justify-center items-center sm:px-0 px-8  ">
-        <h1
-          className="absolute left-[10vw] top-[15vh] text-3xl font-bold   block  text-neutral-950"
-          style={{
-            textShadow:
-              "0rem 0rem 1rem rgb(209 250 229 / var(--tw-text-opacity))",
-          }}
-        >
-          Welcome
-        </h1>
-        <section className="h-screen flex content-center justify-center w-full">
-          <Carousel
+        <section className="h-[90vh] mb-14 flex content-center justify-center w-full">
+          <Card className="rounded-2xl w-[80vw] mt-32 backdrop-filter backdrop-blur-xl bg-slate-200 dark:bg-emerald-900 bg-opacity-40 dark:bg-opacity-40 dark:bg-emerald-800/40">
+            <CardHeader>
+              <h1
+                className="absolute   text-3xl font-bold   block  text-neutral-100 dark:text-emerald-100"
+                // style={{
+                //   textShadow:
+                //     "0rem 0rem 1rem rgb(209 250 229 / var(--tw-text-opacity))",
+                // }}
+              >
+                Welcome
+              </h1>
+            </CardHeader>
+          </Card>
+          {/* <Carousel
             orientation="vertical"
             opts={{
               align: "start",
@@ -105,19 +106,15 @@ export default function Home() {
             </CarouselContent>
             <CarouselPrevious className="animate-pulse dark:bg-emerald-100/60 absolute m-auto top-[15vh] right-[10vw] translate-x-0 left-auto" />
             <CarouselNext className="animate-pulse dark:bg-emerald-100/60 absolute m-auto bottom-[15vh] right-[10vw] translate-x-0 left-auto" />
-          </Carousel>
+          </Carousel> */}
         </section>
         <section className="mx-24">
-          <Card className=" w-[80vw] my-24  backdrop-filter backdrop-blur-xl bg-slate-200 dark:bg-emerald-900 bg-opacity-40 dark:bg-opacity-40 dark:bg-emerald-800/40">
-            <BasicParallax>
-              <div className=" h-screen ">
-                <CardHeader className="">
-                  <CardTitle className=" leading-8">test pages</CardTitle>
-                </CardHeader>
-                <CardContent className="p-6 ">test</CardContent>{" "}
-              </div>
-            </BasicParallax>
-          </Card>
+          <div className="rounded-2xl w-[80vw] my-4  backdrop-filter backdrop-blur-xl bg-slate-200 dark:bg-emerald-900 bg-opacity-40 dark:bg-opacity-40 dark:bg-emerald-800/40">
+            <h2 className="mx-auto text-center p-4 text-xl leading-8">
+              Latest posts
+            </h2>
+            <BlogCards posts={postsData ?? []}></BlogCards>
+          </div>
         </section>
       </main>
     </>

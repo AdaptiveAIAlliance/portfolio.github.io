@@ -1,6 +1,6 @@
 "use client";
 import React, { FunctionComponent, useState } from "react";
-import SvgGridIcon from "./svg_grid_icon";
+import SvgGridIcon from "./svgs/svg_grid_icon";
 
 interface MenuButton {
   className: string;

@@ -11,6 +11,7 @@ import { assetPathResolver } from "@/utils/utils";
 import Image from "next/image";
 import { badgeVariants } from "./ui/badge";
 import { ReactElement } from "react";
+import BlogAuthor from "./blogAuthor";
 
 type Props = {
   posts: posts;
@@ -70,6 +71,9 @@ export default function BlogCards(props: Props): ReactElement {
                 {post.intro}
               </Link>
             </CardContent>
+            <CardFooter>
+              <BlogAuthor author={post.author} authorImage={post.authorImage} />
+            </CardFooter>
           </Card>
         </li>
       ))}

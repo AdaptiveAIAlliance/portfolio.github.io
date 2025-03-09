@@ -1,6 +1,8 @@
 type postAttributes = {
   title: string;
   featImage: string;
+  author: string;
+  authorImage: string;
   alt: string;
   intro: string;
   categories: string[];
@@ -12,6 +14,8 @@ type post = {
   id: string;
   title: string;
   featImage: string;
+  author: string;
+  authorImage: string;
   alt: string;
   intro: string;
   categories: string[];
@@ -24,6 +28,8 @@ type posts = {
   id: string;
   title: string;
   featImage: string;
+  author: string;
+  authorImage: string;
   alt: string;
   intro: string;
   categories: string[];

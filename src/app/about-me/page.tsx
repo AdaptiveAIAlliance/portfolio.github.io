@@ -111,11 +111,10 @@ export default function Home() {
                   <p>{profile.summery}</p>
                 </CardContent>
                 <CardFooter className="flex  gap-x-3">
-                  <TabsList>
-                    <TabsTrigger value="projects">View My Work</TabsTrigger>
-                  </TabsList>
                   <Drawer>
-                    <DrawerTrigger>Get in Touch</DrawerTrigger>
+                    <DrawerTrigger asChild>
+                      <Button variant="outline"> Get in Touche</Button>
+                    </DrawerTrigger>
                     <DrawerContent className="bg-slate-400 dark:bg-emerald-900 bg-opacity-60 dark:bg-opacity-40 rounded-tr-3xl">
                       <DrawerHeader>
                         <DrawerTitle>Are you absolutely sure?</DrawerTitle>
@@ -131,7 +130,12 @@ export default function Home() {
                       </DrawerFooter>
                     </DrawerContent>
                   </Drawer>
-                </CardFooter>{" "}
+                  <TabsList className="bg-transparent  text-neutral-900  dark:text-emerald-100">
+                    <TabsTrigger value="projects" asChild>
+                      <Button variant="link">View My Work</Button>
+                    </TabsTrigger>
+                  </TabsList>
+                </CardFooter>
               </Card>
             </section>
           </TabsContent>

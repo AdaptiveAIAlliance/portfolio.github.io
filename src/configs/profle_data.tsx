@@ -1,5 +1,7 @@
 export const profile = {
   name: "John Due",
+  initials: "JD",
+  imageSrc: "https://github.com/shadcn.png",
   tagLine: "Innovative Web, App, and Software Developer",
   summery:
     "Explore the portfolio of John Doe, a versatile Web, App, and Software Developer with expertise in JavaScript, Dart, Python, and Elixir. Discover innovative projects and solutions crafted using cutting-edge frameworks like React, Flutter, and Phoenix. Dive into a comprehensive showcase of skills, experience, and continuous learning, all dedicated to delivering top-notch software solutions. Whether you're looking for a seasoned developer or an insightful blog, find it all here in John Doe's Developer Portfolio.",
