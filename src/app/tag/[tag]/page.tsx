@@ -20,8 +20,8 @@ import {
 import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { assetPathResolver } from "@/utils/utils";
-import BlogCards from "@/components/blogCards";
 import { useEffect, useState } from "react";
+import BlogCards from "@/components/BlogCards";
 export async function generateStaticParams() {
   const paths = await getTags();
 

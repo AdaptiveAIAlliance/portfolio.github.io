@@ -11,7 +11,7 @@ import { assetPathResolver } from "@/utils/utils";
 import Image from "next/image";
 import { badgeVariants } from "./ui/badge";
 import { ReactElement } from "react";
-import BlogAuthor from "./blogAuthor";
+import BlogAuthor from "./BlogAuthor";
 
 type Props = {
   posts: posts;

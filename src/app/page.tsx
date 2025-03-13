@@ -24,7 +24,7 @@ import {
 
 import { Badge } from "@/components/ui/badge";
 import Autoplay from "embla-carousel-autoplay";
-import BasicParallax from "@/components/basicParallax";
+import BasicParallax from "@/components/BasicParallax";
 import { getSortedPostsData } from "@/lib/posts";
 import BlogCards from "@/components/blogCards";
 async function getPosts() {

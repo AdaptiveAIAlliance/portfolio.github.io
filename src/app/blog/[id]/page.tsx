@@ -15,7 +15,7 @@ import Link from "next/link";
 import { assetPathResolver } from "@/utils/utils";
 import { badgeVariants } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import BlogAuthor from "@/components/blogAuthor";
+import BlogAuthor from "@/components/BlogAuthor";
 export async function generateStaticParams() {
   const paths = await getAllPostIds();
 
