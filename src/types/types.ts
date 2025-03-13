@@ -6,6 +6,8 @@ type postAttributes = {
   categories: string[];
   date: string;
   tags: string[];
+  author: string;
+  authorImage: string;
 };
 
 type post = {
@@ -18,6 +20,8 @@ type post = {
   date: string;
   contentHtml: string;
   tags: string[];
+  author: string;
+  authorImage: string;
 };
 
 type posts = {
@@ -29,6 +33,8 @@ type posts = {
   categories: string[];
   date: string;
   tags: string[];
+  author: string;
+  authorImage: string;
 }[];
 type frontMatterResult = {
   attributes: postAttributes;

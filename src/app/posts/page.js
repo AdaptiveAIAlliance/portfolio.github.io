@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "../page.module.css";
-import ThreeFiberScene from "@/components/threefiber_example";
-import Header from "@/components/header";
+import ThreeFiberScene from "@/components/ThreefiberExample";
+import Header from "@/components/Header";
 
 async function getPosts() {
   const res = await fetch("https://jsonplaceholder.typicode.com/posts");

@@ -1,4 +1,4 @@
-import ThreeFiberScene from "@/components/threefiber_example";
+import ThreeFiberScene from "@/components/ThreefiberExample";
 import {
   getPostData,
   getAllPostIds,
@@ -6,7 +6,7 @@ import {
   getSortedPostsData,
 } from "../../../lib/posts";
 
-import Header from "@/components/header";
+import Header from "@/components/Header";
 import Image from "next/image";
 import {
   Breadcrumb,
@@ -19,7 +19,7 @@ import {
 import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { assetPathResolver } from "@/utils/utils";
-import BlogCards from "@/components/blogCards";
+import BlogCards from "@/components/BlogCards";
 export async function generateStaticParams() {
   const paths = await getCategories();
 

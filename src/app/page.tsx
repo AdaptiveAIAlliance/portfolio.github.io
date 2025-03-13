@@ -1,10 +1,10 @@
 "use client";
 import Image from "next/image";
-import Header from "@/components/header";
+import Header from "@/components/Header";
 import { profile } from "../configs/profle_data";
 import Link from "next/link";
-import ThreeScene from "@/components/three_scene";
-import ThreeFiberScene from "@/components/threefiber_example";
+import ThreeScene from "@/components/ThreeScene";
+import ThreeFiberScene from "@/components/ThreefiberExample";
 import AIWriter from "react-aiwriter";
 import { TypeAnimation } from "react-type-animation";
 import React, { useState } from "react";
@@ -58,15 +58,6 @@ export default function Home() {
       <ThreeFiberScene />
       <Header />
       <main className="flex text-neutral-900 min-h-screen   dark:text-emerald-100 flex-col justify-center items-center sm:px-0 px-8  ">
-        <h1
-          className="absolute left-[10vw] top-[15vh] text-3xl font-bold   block  text-neutral-950"
-          style={{
-            textShadow:
-              "0rem 0rem 1rem rgb(209 250 229 / var(--tw-text-opacity))",
-          }}
-        >
-          Welcome
-        </h1>
         <section className="h-screen flex content-center justify-center w-full">
           <Carousel
             orientation="vertical"
@@ -79,8 +70,17 @@ export default function Home() {
                 delay: 4000,
               }),
             ]}
-            className="w-full flex items-center align-middle justify-center content-center "
+            className="w-full flex flex-col items-center align-middle justify-center content-center "
           >
+            <h1
+              className=" text-3xl font-bold   block  text-neutral-950"
+              style={{
+                textShadow:
+                  "0rem 0rem 1rem rgb(209 250 229 / var(--tw-text-opacity))",
+              }}
+            >
+              Welcome
+            </h1>
             <CarouselContent className=" h-[60vh]">
               {profile.skills.map((skill, index) => (
                 <CarouselItem

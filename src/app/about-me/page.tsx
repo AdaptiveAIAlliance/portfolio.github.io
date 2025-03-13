@@ -1,10 +1,10 @@
 "use client";
 import Image from "next/image";
-import Header from "@/components/header";
+import Header from "@/components/Header";
 import { profile } from "../../configs/profle_data";
 import Link from "next/link";
-import ThreeScene from "@/components/three_scene";
-import ThreeFiberScene from "@/components/threefiber_example";
+import ThreeScene from "@/components/ThreeScene";
+import ThreeFiberScene from "@/components/ThreefiberExample";
 import AIWriter from "react-aiwriter";
 import { TypeAnimation } from "react-type-animation";
 import React, { useState } from "react";

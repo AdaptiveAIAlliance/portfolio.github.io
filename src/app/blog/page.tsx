@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "../page.module.css";
-import ThreeFiberScene from "@/components/threefiber_example";
-import Header from "@/components/header";
+import ThreeFiberScene from "@/components/ThreefiberExample";
+import Header from "@/components/Header";
 
 import { getSortedPostsData } from "../../lib/posts";
 import {
@@ -26,7 +26,7 @@ import { assetPathResolver } from "@/utils/utils";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { badgeVariants } from "@/components/ui/badge";
-import BlogCards from "@/components/blogCards";
+import BlogCards from "@/components/BlogCards";
 
 // export async function getStaticProps() {
 //   const allPostsData = getSortedPostsData();

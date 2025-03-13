@@ -1,6 +1,6 @@
 "use client";
 import React, { FunctionComponent } from "react";
-import svgStyles from "./svg_theme_mode_icon.module.scss";
+import svgStyles from "./SvgThemeModeIcon.module.scss";
 
 interface SvgThemeModeIcon {
   isActive: boolean;

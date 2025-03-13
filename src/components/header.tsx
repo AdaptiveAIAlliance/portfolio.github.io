@@ -2,18 +2,18 @@
 
 import Link from "next/link";
 import { config } from "../configs/config.mjs";
-import SvgGridIcon from "./svg_grid_icon";
+import SvgGridIcon from "./svgs/SvgGridIcon";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { assetPathResolver } from "@/utils/utils";
 import { useTheme } from "next-themes";
-import SvgThemeModeIcon from "./svg_theme_mode_icon";
+import SvgThemeModeIcon from "./svgs/SvgThemeModeIcon";
 import AnimatedCursor from "react-animated-cursor";
+import SvgLogo from "./svgs/SvgLogo";
 export default function Header() {
   const { theme, setTheme } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
-  console.log("theme from header");
-  console.log(theme);
+
   useEffect(() => {
     if (theme !== "undefined") {
       theme !== "dark" ? setTheme("light") : setTheme("dark");
@@ -22,14 +22,14 @@ export default function Header() {
 
   return (
     <>
-      <header className="flex justify-between min-w-full  px-8 py-4 fixed bg-opacity-20 dark:bg-opacity-20 bg-slate-400 dark:bg-emerald-700 border border-gray-300 border-opacity-20 dark:border-gray-900 z-10">
-        <Image
-          className="w-12 "
-          src={assetPathResolver("/logo.png")}
-          width={128}
-          height={128}
-          alt="website log"
-        />
+      <header className="flex justify-between items-center min-w-full  px-8 py-4 fixed bg-opacity-20 dark:bg-opacity-20 bg-slate-400 dark:bg-emerald-700 border border-gray-300 border-opacity-20 dark:border-gray-900 z-10">
+        <Link href={`/`}>
+          <SvgLogo
+            width="32"
+            height="32"
+            className=" stroke-slate-200 fill-slate-200 dark:stroke-lime-300 dark:fill-lime-300"
+          />
+        </Link>
         <nav
           className={`leading-4 h-14 flex justify-between gap-x-2 after:filter after:blur-lg after:left-0 after:right-0 after:top-0  after:fixed after:bg-clip-padding after:backdrop-filter after:backdrop-blur-xl after:-z-50 after:duration-300 ${
             isOpen ? "after:h-screen " : "after:h-24 after:pb-4"

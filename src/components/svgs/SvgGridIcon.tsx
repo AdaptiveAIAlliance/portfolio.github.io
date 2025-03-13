@@ -1,6 +1,6 @@
 "use client";
 import React, { FunctionComponent } from "react";
-import svgStyles from "./svg_grid_icon.module.scss";
+import svgStyles from "./SvgGridIcon.module.scss";
 
 interface SvgGridIcon {
   isActive: boolean;

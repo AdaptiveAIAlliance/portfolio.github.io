@@ -1,6 +1,6 @@
-import ThreeFiberScene from "@/components/threefiber_example";
+import ThreeFiberScene from "@/components/ThreefiberExample";
 import { getPostData, getAllPostIds } from "../../../lib/posts";
-import Header from "@/components/header";
+import Header from "@/components/Header";
 import Image from "next/image";
 import {
   Breadcrumb,
@@ -13,6 +13,7 @@ import {
 import Link from "next/link";
 import { assetPathResolver } from "@/utils/utils";
 import { badgeVariants } from "@/components/ui/badge";
+import BlogAuthor from "@/components/BlogAuthor";
 export async function generateStaticParams() {
   const paths = getAllPostIds();
 
@@ -89,6 +90,12 @@ export default async function PostPage({ params }: { params: { id: string } }) {
             className="px-8 pb-8  dark:text-emerald-100 "
             dangerouslySetInnerHTML={{ __html: postData.contentHtml }}
           />
+          <div className="px-8 pb-8  dark:text-emerald-100 ">
+            <BlogAuthor
+              author={postData.author}
+              authorImage={postData.authorImage}
+            />
+          </div>
         </section>
       </main>
     </>

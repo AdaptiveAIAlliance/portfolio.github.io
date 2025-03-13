@@ -1,8 +1,8 @@
 "use client";
 import React, { FunctionComponent, useState } from "react";
 import { useTheme } from "next-themes";
-import SvgGridIcon from "./svg_grid_icon";
-import SvgThemeModeIcon from "./svg_theme_mode_icon";
+import SvgGridIcon from "./svgs/SvgGridIcon";
+import SvgThemeModeIcon from "./svgs/SvgThemeModeIcon";
 
 interface ThemeBrightnessButton {
   className: string;

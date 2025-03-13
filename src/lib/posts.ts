@@ -48,6 +48,8 @@ export async function getSortedPostsData() {
         categories: matterResult.attributes.categories,
         tags: matterResult.attributes.tags,
         date: matterResult.attributes.date,
+        author: matterResult.attributes.author,
+        authorImage: matterResult.attributes.authorImage,
       };
     })
   );
@@ -108,5 +110,7 @@ export async function getPostData(id: string) {
     categories: matterResult.attributes.categories,
     tags: matterResult.attributes.tags,
     date: matterResult.attributes.date,
+    author: matterResult.attributes.author,
+    authorImage: matterResult.attributes.authorImage,
   };
 }

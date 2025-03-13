@@ -9,6 +9,8 @@ tags:
 categories: ["Cat1", "Cat2", "Cat3", "Cat5"]
 featImage: "test.png"
 alt: "test"
+author: "john Due"
+authorImage: "/AAA_profile_pic.png"
 intro: "Next.js has two forms of pre-rendering: **Static Generation** and **Server-side Rendering**. The difference is "
 ---
 
