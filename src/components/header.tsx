@@ -37,7 +37,6 @@ export default function Header() {
         >
           <button
             onClick={() => {
-              console.log("tsetet", theme);
               theme === "dark" ? setTheme("light") : setTheme("dark");
               // return theme === "dark" ? setTheme("light") : setTheme("dark");
             }}

@@ -41,13 +41,11 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 //   return tags;
 // }
 
-export default async function TagsPage({ tags }: { tags: string[] }) {
+export default function TagsPage({ tags }: { tags: string[] }) {
   // const tags: string[] = await getPostTags();
 
   return (
     <>
-      <ThreeFiberScene />
-      <Header />
       <main className="flex text-neutral-900  dark:text-emerald-100 flex-col justify-between sm:px-24 px-8   pt-32 mb-16 ">
         <section className="my-4 border-slate-100 border rounded-3xl p-4   w-full sm:w-full justify-items-start text-neutral-900 dark:text-emerald-100 bg-clip-padding backdrop-filter backdrop-blur-xl bg-slate-400 dark:bg-emerald-900 bg-opacity-60 dark:bg-opacity-40 dark:border-neutral-950">
           <h1 className="text-3xl p-4">Posts archive</h1>
@@ -56,6 +54,12 @@ export default async function TagsPage({ tags }: { tags: string[] }) {
               <BreadcrumbItem>
                 <BreadcrumbPage className="hover:text-neutral-400">
                   <Link href="/">Home</Link>
+                </BreadcrumbPage>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbPage className="hover:text-neutral-400">
+                  <Link href="/blog">blog</Link>
                 </BreadcrumbPage>
               </BreadcrumbItem>
               <BreadcrumbSeparator />

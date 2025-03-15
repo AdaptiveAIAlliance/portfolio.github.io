@@ -37,7 +37,6 @@ function Box(props: ThreeElements["mesh"]) {
 
 function Bun(props: any) {
   const { nodes } = useGLTF((suspend(suzi) as any).default) as { nodes: any };
-  console.log(nodes);
   return (
     <mesh receiveShadow castShadow geometry={nodes.mesh.geometry} {...props}>
       <meshStandardMaterial color="#222" roughness={0.5} />
@@ -67,8 +66,7 @@ const ThreeFiberScene: React.FC = () => {
   const { theme } = useTheme();
 
   const containerRef = useRef<HTMLDivElement>(null);
-  console.log("theme from threescene");
-  console.log(theme);
+
   useEffect(() => {
     theme === "dark"
       ? containerRef.current?.classList.remove("grayscale")

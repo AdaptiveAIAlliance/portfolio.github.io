@@ -16,7 +16,6 @@ const ThreeScene: React.FC = () => {
       const renderer = new THREE.WebGLRenderer();
       renderer.setSize(window.innerWidth, window.innerHeight);
       containerRef.current?.appendChild(renderer.domElement);
-      console.log(containerRef.current);
 
       camera.position.z = 5;
 

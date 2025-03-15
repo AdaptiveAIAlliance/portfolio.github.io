@@ -5,7 +5,7 @@ tags:
   - "Tag1"
   - "Tag3"
 
-categories: ["Cat1", "Cat2", "Cat4"]
+categories: ["Cat1", "Cat4"]
 featImage: "test.png"
 alt: "test"
 author: "john Due"

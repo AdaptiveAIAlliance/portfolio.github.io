@@ -26,10 +26,18 @@ export async function getSortedPostsData(): Promise<posts> {
   // Get file names under /posts
   const fileNames = await readdir(postsDirectory);
 
+  // const fullPath = path.join(postsDirectory, `${id}.md`);
+
+  // const fileContents = await readFile(fullPath, "utf8");
+
+  // // const matterResult = matter(fileContents);
+  // const matterResult = fm(fileContents) as FrontMatterResult<any>;
+
   const allPostsData = await Promise.all(
     fileNames.map(async (fileName) => {
       // Remove ".md" from file name to get id
       const id = fileName.replace(/\.md$/, "");
+
       // Read markdown file as string
       const fullPath = path.join(postsDirectory, fileName);
       const fileContents = await readFile(fullPath, "utf8");
@@ -50,6 +58,9 @@ export async function getSortedPostsData(): Promise<posts> {
     })
   );
   // Sort posts by date
+  // console.log("post categories");
+
+  // console.log(allPostsData.map((p) => p.categories));
   return allPostsData.sort((a, b) => {
     if (a.date < b.date) {
       return 1;

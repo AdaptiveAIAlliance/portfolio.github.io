@@ -54,7 +54,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   };
 };
 
-export default async function TagPage({
+export default function TagPage({
   tag,
   postsData,
 }: {
@@ -66,8 +66,6 @@ export default async function TagPage({
 
   return (
     <>
-      <ThreeFiberScene />
-      <Header />
       <main className="flex text-neutral-900  dark:text-emerald-100 flex-col justify-between sm:px-24 px-8   pt-32">
         <section className="border-slate-100 border  rounded-3xl overflow-hidden  mb-16 w-full sm:w-full justify-items-start text-neutral-900 bg-clip-padding backdrop-filter backdrop-blur-xl bg-slate-400 dark:bg-emerald-900 bg-opacity-60 dark:bg-opacity-40 dark:border-neutral-950">
           <h1 className="text-2xl p-4  dark:text-emerald-100 ">{tag}</h1>

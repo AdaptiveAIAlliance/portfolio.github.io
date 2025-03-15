@@ -7,7 +7,7 @@ import ThreeScene from "@/components/ThreeScene";
 import ThreeFiberScene from "@/components/ThreefiberExample";
 import AIWriter from "react-aiwriter";
 import { TypeAnimation } from "react-type-animation";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Typed from "typed.js";
 import {
   Card,
@@ -45,18 +45,89 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import Autoplay from "embla-carousel-autoplay";
 import BasicParallax from "@/components/BasicParallax";
+import BlogCards from "@/components/BlogCards";
+import { posts } from "@/types/types";
+import { getSortedPostsData } from "@/lib/posts";
+import { GetStaticProps } from "next";
+import { getUIComponentData } from "@/lib/staticFilesUtils";
 
-export default function Home() {
-  const [tab, setTab] = useState("hi");
-
-  const onTabChange = (value: string) => {
-    setTab(value);
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  // const posts = await getSortedPostsData();
+  const posts: posts = await getSortedPostsData();
+  const data = await getUIComponentData();
+  return {
+    props: {
+      posts,
+      data,
+    },
   };
+};
+export default function Home({ posts, data }: { posts: posts; data: any }) {
+  // const [posts, setPosts] = useState<posts>([]);
+  // // const onTabChange = (value: string) => {};
+  // useEffect(() => {
+  //   const load = async () => {
+  //     const postsData = await getPosts();
+  //     setPosts((prevPost) => postsData);
+  //   };
+  //   load();
+  // }, []);
+  console.log(data);
 
+  const carouselContent = [
+    {
+      title: "Latest Posts",
+      description: "Read the lates content",
+
+      content: (
+        // <p>test</p>
+        <BlogCards
+          posts={posts}
+          uiSwitch={{
+            clasification: false,
+            intro: true,
+            image: true,
+            title: true,
+            layout: "row",
+          }}
+        ></BlogCards>
+      ),
+    },
+    {
+      title: "UI components",
+      description: "Read the lates content",
+      content: (
+        <BlogCards
+          posts={posts}
+          uiSwitch={{
+            clasification: false,
+            intro: true,
+            image: true,
+            title: true,
+            layout: "row",
+          }}
+        ></BlogCards>
+      ),
+    },
+    {
+      title: "UI components",
+      description: "Read the lates content",
+      content: (
+        <BlogCards
+          posts={posts}
+          uiSwitch={{
+            clasification: false,
+            intro: true,
+            image: true,
+            title: true,
+            layout: "row",
+          }}
+        ></BlogCards>
+      ),
+    },
+  ];
   return (
     <>
-      <ThreeFiberScene />
-      <Header />
       <main className="flex text-neutral-900 min-h-screen   dark:text-emerald-100 flex-col justify-center items-center sm:px-0 px-8  ">
         <section className="h-screen flex content-center justify-center w-full">
           <Carousel
@@ -72,52 +143,30 @@ export default function Home() {
             ]}
             className="w-full flex flex-col items-center align-middle justify-center content-center "
           >
-            <h1
-              className=" text-3xl font-bold   block  text-neutral-950"
-              style={{
-                textShadow:
-                  "0rem 0rem 1rem rgb(209 250 229 / var(--tw-text-opacity))",
-              }}
-            >
-              Welcome
+            <h1 className="fixed top-28 left-4 self-start -rotate-[35deg]  mt-10 ml-10 block [text-shadow:_0_0_20px_rgba(10,10,10,1)] dark:[text-shadow:_0_0_20px_rgba(209,250,229,.8)] text-3xl font-bold font-[cursive]  animate-pulse blur-[1px]  text-neutral-700  dark:text-emerald-700">
+              What&apos;s new?
             </h1>
-            <CarouselContent className=" h-[60vh]">
-              {profile.skills.map((skill, index) => (
+            <CarouselContent className="rounded-t-2xl  h-[60vh]   w-4/5 m-auto ">
+              {carouselContent.map((c, index) => (
                 <CarouselItem
                   key={index}
-                  className="h-[60vh] pt-1 flex flex-col items-center justify-center"
+                  className="basis-full p-0 h-fit flex flex-col items-center justify-center"
                 >
-                  <Card className=" py-4 backdrop-filter backdrop-blur-xl bg-slate-200 dark:bg-emerald-900 bg-opacity-40 dark:bg-opacity-40 dark:bg-emerald-800/40">
-                    <CardHeader className="">
-                      <CardTitle className=" leading-8">
-                        {skill.title}
-                      </CardTitle>
-                    </CardHeader>
-
-                    <CardContent className="p-6 ">
-                      {skill.list.map((s, i) => (
-                        <Badge key={i}> {s}</Badge>
-                      ))}
-                    </CardContent>
-                  </Card>
+                  <div className="rounded-t-2xl flex flex-col justify-center items-center p-4 pb-2 w-fit h-fit backdrop-filter backdrop-blur-xl bg-slate-200 dark:bg-emerald-900 bg-opacity-40 dark:bg-opacity-40 dark:bg-emerald-800/40">
+                    <h2 className="block w-max text-xl font-extrabold">
+                      {c.title}
+                    </h2>
+                    <p>{c.description}</p>
+                  </div>
+                  <div className="flex p-4  rounded-2xl min-h-[50vh] min-w-[70vw] w-[70vw] h-[50vh] backdrop-filter backdrop-blur-xl bg-slate-200 dark:bg-emerald-900 bg-opacity-40 dark:bg-opacity-40 dark:bg-emerald-800/40">
+                    {c.content}
+                  </div>
                 </CarouselItem>
               ))}
             </CarouselContent>
             <CarouselPrevious className="animate-pulse dark:bg-emerald-100/60 absolute m-auto top-[15vh] right-[10vw] translate-x-0 left-auto" />
-            <CarouselNext className="animate-pulse dark:bg-emerald-100/60 absolute m-auto bottom-[15vh] right-[10vw] translate-x-0 left-auto" />
+            <CarouselNext className="animate-pulse dark:bg-emerald-100/60 absolute m-auto bottom-[5vh] right-[10vw] translate-x-0 left-auto" />
           </Carousel>
-        </section>
-        <section className="mx-24">
-          <Card className=" w-[80vw] my-24  backdrop-filter backdrop-blur-xl bg-slate-200 dark:bg-emerald-900 bg-opacity-40 dark:bg-opacity-40 dark:bg-emerald-800/40">
-            <BasicParallax>
-              <div className=" h-screen ">
-                <CardHeader className="">
-                  <CardTitle className=" leading-8">test pages</CardTitle>
-                </CardHeader>
-                <CardContent className="p-6 ">test</CardContent>{" "}
-              </div>
-            </BasicParallax>
-          </Card>
         </section>
       </main>
     </>

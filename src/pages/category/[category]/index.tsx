@@ -20,7 +20,7 @@ import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { assetPathResolver } from "@/utils/utils";
 import BlogCards from "@/components/BlogCards";
-import { posts } from "@/types/types";
+import { post, posts } from "@/types/types";
 import { GetStaticPaths, GetStaticProps } from "next";
 // export async function generateStaticParams() {
 //   const paths = await getCategories();
@@ -44,28 +44,34 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const category = params?.category as string;
   const postsData: posts = await getSortedPostsData();
 
+  const postsDataJson = JSON.stringify(postsData);
   return {
     props: {
       category,
-      postsData,
+      postsDataJson,
     },
   };
 };
 
-export default async function CategoryPage({
+export default function CategoryPage({
   category,
-  postsData,
+  postsDataJson,
 }: {
   category: string;
-  postsData: posts;
+  postsDataJson: string;
 }) {
+  console.log(category);
+  const posts = JSON.parse(postsDataJson).filter((p: post) =>
+    p.categories.includes(category)
+  );
+  // console.log(posts.map((p) => p.categories));
+  // console.log("posts");
+  // console.log(posts);
   // const category = params.category;
   // const postsData: posts = await getSortedPostsData();
 
   return (
     <>
-      <ThreeFiberScene />
-      <Header />
       <main className="flex text-neutral-900  dark:text-emerald-100 flex-col justify-between sm:px-24 px-8   pt-32">
         <section className="border-slate-100 border  rounded-3xl overflow-hidden  mb-16 w-full sm:w-full justify-items-start text-neutral-900 bg-clip-padding backdrop-filter backdrop-blur-xl bg-slate-400 dark:bg-emerald-900 bg-opacity-60 dark:bg-opacity-40 dark:border-neutral-950">
           <h1 className="text-2xl p-4  dark:text-emerald-100 ">{category}</h1>
@@ -94,10 +100,7 @@ export default async function CategoryPage({
               </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>
-          <BlogCards
-            posts={postsData.filter((p) => p.categories.includes(category))}
-            uiSwitch={null}
-          ></BlogCards>
+          <BlogCards posts={posts} uiSwitch={null}></BlogCards>
         </section>
       </main>
     </>
