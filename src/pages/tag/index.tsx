@@ -15,6 +15,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import { GetStaticProps } from "next";
 // export async function getStaticProps() {
 //   const allPostsData = getSortedPostsData();
 //   return {
@@ -24,15 +25,24 @@ import {
 //   };
 // }
 
-async function getPostTags(): Promise<string[]> {
+export const getStaticProps: GetStaticProps = async ({ params }) => {
   const tags = await getTags();
 
-  // const res = await fetch("https://jsonplaceholder.typicode.com/posts");
-  return tags;
-}
+  return {
+    props: {
+      tags,
+    },
+  };
+};
 
-export default async function CategoryPage() {
-  const tags: string[] = await getPostTags();
+// async function getPostTags(): Promise<string[]> {
+//   const tags = await getTags();
+
+//   return tags;
+// }
+
+export default async function TagsPage({ tags }: { tags: string[] }) {
+  // const tags: string[] = await getPostTags();
 
   return (
     <>
@@ -73,21 +83,6 @@ export default async function CategoryPage() {
             ))}
           </ol>
         </section>
-
-        {/* <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-          <h2 className={utilStyles.headingLg}>Blog</h2>
-          <ul className={utilStyles.list}>
-            {allPostsData.map(({ id, date, title }) => (
-              <li className={utilStyles.listItem} key={id}>
-                {title}
-                <br />
-                {id}
-                <br />
-                {date}
-              </li>
-            ))}
-          </ul>
-        </section> */}
       </main>
     </>
   );

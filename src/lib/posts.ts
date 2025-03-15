@@ -5,10 +5,12 @@ import utils from "util";
 import { remark } from "remark";
 import html from "remark-html";
 import { readdir, readFile } from "fs/promises";
-import fm from "front-matter";
+import fm, { FrontMatterResult } from "front-matter";
+
+import { posts } from "@/types/types";
 const postsDirectory = path.join(process.cwd(), "content", "posts");
 
-export function getAllPostIds() {
+export async function getAllPostIds() {
   const fileNames = fs.readdirSync(postsDirectory);
 
   return fileNames.map((fileName) => {
@@ -20,7 +22,7 @@ export function getAllPostIds() {
   });
 }
 
-export async function getSortedPostsData() {
+export async function getSortedPostsData(): Promise<posts> {
   // Get file names under /posts
   const fileNames = await readdir(postsDirectory);
 
@@ -31,14 +33,8 @@ export async function getSortedPostsData() {
       // Read markdown file as string
       const fullPath = path.join(postsDirectory, fileName);
       const fileContents = await readFile(fullPath, "utf8");
-      const matterResult = fm(fileContents) as frontMatterResult;
-      console.log(matterResult);
+      const matterResult = fm<any>(fileContents) as FrontMatterResult<any>;
 
-      // Use gray-matter to parse the post metadata section
-      // const matterResult = matter(fileContents);
-      // const matterResult = matter.read(fullPath);
-
-      // Combine the data with the id
       return {
         id,
         title: matterResult.attributes.title,
@@ -95,7 +91,7 @@ export async function getPostData(id: string) {
   const fileContents = await readFile(fullPath, "utf8");
 
   // const matterResult = matter(fileContents);
-  const matterResult = fm(fileContents) as frontMatterResult;
+  const matterResult = fm(fileContents) as FrontMatterResult<any>;
 
   const processedContent = await remark().use(html).process(matterResult.body);
   const contentHtml = processedContent.toString();

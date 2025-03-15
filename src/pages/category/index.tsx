@@ -15,6 +15,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import { GetStaticProps } from "next";
 // export async function getStaticProps() {
 //   const allPostsData = getSortedPostsData();
 //   return {
@@ -24,15 +25,29 @@ import {
 //   };
 // }
 
-async function getPostCategories() {
-  const categories = getCategories();
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const categories = await getCategories();
 
-  // const res = await fetch("https://jsonplaceholder.typicode.com/posts");
-  return categories;
-}
+  return {
+    props: {
+      categories,
+    },
+  };
+};
 
-export default async function CategoryPage() {
-  const categories = await getPostCategories();
+// async function getPostCategories() {
+//   const categories = getCategories();
+
+//   // const res = await fetch("https://jsonplaceholder.typicode.com/posts");
+//   return categories;
+// }
+
+export default async function CategoryPage({
+  categories,
+}: {
+  categories: string[];
+}) {
+  // const categories = await getPostCategories();
 
   return (
     <>

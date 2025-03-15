@@ -3,13 +3,13 @@ import { Inter } from "next/font/google";
 import { profile } from "../configs/profle_data";
 import { ThemeProvider } from "next-themes";
 
-import "./globals.css";
 import Header from "@/components/Header";
 import ThreeFiberScene from "@/components/ThreefiberExample";
+import Head from "next/head";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata: Metadata = {
+const metadata = {
   title: `${profile.name}'s Developer Portfolio`,
   description: `${profile.description}`,
 };
@@ -21,8 +21,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head />
-
+      <Head>
+        <link rel="icon" href="/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta charSet="UTF-8" />
+        <title>{metadata.title as string}</title>
+      </Head>
       <body className={inter.className + " bg-neutral-900 "}>
         <ThemeProvider attribute="class">{children}</ThemeProvider>
       </body>

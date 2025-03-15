@@ -1,17 +1,7 @@
-import React from "react";
-import styles from "../page.module.css";
 import ThreeFiberScene from "@/components/ThreefiberExample";
 import Header from "@/components/Header";
-
 import { getSortedPostsData } from "../../lib/posts";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -22,30 +12,30 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import { assetPathResolver } from "@/utils/utils";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { badgeVariants } from "@/components/ui/badge";
-import BlogCards from "@/components/BlogCards";
 
-// export async function getStaticProps() {
+import BlogCards from "@/components/BlogCards";
+import { GetStaticProps } from "next";
+import { posts } from "@/types/types";
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const posts = await getSortedPostsData();
+
+  return {
+    props: {
+      posts,
+    },
+  };
+};
+
+// async function getPosts() {
 //   const allPostsData = getSortedPostsData();
-//   return {
-//     props: {
-//       allPostsData,
-//     },
-//   };
+
+//   // const res = await fetch("https://jsonplaceholder.typicode.com/posts");
+//   return allPostsData;
 // }
 
-async function getPosts() {
-  const allPostsData = getSortedPostsData();
-
-  // const res = await fetch("https://jsonplaceholder.typicode.com/posts");
-  return allPostsData;
-}
-
-export default async function PostsPage() {
-  const posts = await getPosts();
+export default async function PostsPage({ posts }: { posts: posts }) {
+  // const posts = await getPosts();
 
   return (
     <>
@@ -67,7 +57,7 @@ export default async function PostsPage() {
               </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>
-          <BlogCards posts={posts}></BlogCards>
+          <BlogCards posts={posts} uiSwitch={null}></BlogCards>
           {/* <ol
             className="sm:m-8 flex sm:flex-row flex-wrap flex-col gap-y-4 sm:p-8 py-4 px-0 justify-center items-center"
             style={{ gap: "1rem" }}

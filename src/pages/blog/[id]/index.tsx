@@ -14,16 +14,39 @@ import Link from "next/link";
 import { assetPathResolver } from "@/utils/utils";
 import { badgeVariants } from "@/components/ui/badge";
 import BlogAuthor from "@/components/BlogAuthor";
-export async function generateStaticParams() {
-  const paths = getAllPostIds();
+import { post } from "@/types/types";
+import { GetStaticPaths, GetStaticProps } from "next";
+export const getStaticPaths: GetStaticPaths = async () => {
+  const paths = await getAllPostIds();
 
-  return paths.map((path) => ({
-    id: path.params.id,
-  }));
-}
+  return {
+    paths: paths.map((path) => ({
+      params: { id: path.params.id },
+    })),
+    fallback: false,
+  };
+};
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const id = params?.id as string;
+  const postData: post = await getPostData(id);
 
-export default async function PostPage({ params }: { params: { id: string } }) {
-  const postData: post = await getPostData(params.id);
+  return {
+    props: {
+      postData,
+    },
+  };
+};
+
+// export async function generateStaticParams() {
+//   const paths = await getAllPostIds();
+
+//   return paths.map((path) => ({
+//     id: path.params.id,
+//   }));
+// }
+
+export default async function PostPage({ postData }: { postData: post }) {
+  // const postData: post = await getPostData(params.id);
 
   return (
     <>

@@ -18,7 +18,7 @@ export default function Header() {
     if (theme !== "undefined") {
       theme !== "dark" ? setTheme("light") : setTheme("dark");
     }
-  }, []);
+  });
 
   return (
     <>
@@ -70,7 +70,12 @@ export default function Header() {
                 className="text-neural-950 hover:no-underline hover:text-slate-300  dark:text-slate-300 dark:hover:text-lime-300  hover-drop-shadow duration-300"
                 key={index}
               >
-                <Link href={`${menuItem.slug}`}>{menuItem.title}</Link>
+                <Link
+                  onClick={() => setIsOpen(false)}
+                  href={`${menuItem.slug}`}
+                >
+                  {menuItem.title}
+                </Link>
               </li>
             ))}
           </ul>

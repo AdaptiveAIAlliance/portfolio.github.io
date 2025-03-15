@@ -20,21 +20,47 @@ import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { assetPathResolver } from "@/utils/utils";
 import BlogCards from "@/components/BlogCards";
-export async function generateStaticParams() {
+import { posts } from "@/types/types";
+import { GetStaticPaths, GetStaticProps } from "next";
+// export async function generateStaticParams() {
+//   const paths = await getCategories();
+
+//   return paths.map((path) => ({
+//     category: path,
+//   }));
+// }
+
+export const getStaticPaths: GetStaticPaths = async () => {
   const paths = await getCategories();
 
-  return paths.map((path) => ({
-    category: path,
-  }));
-}
+  return {
+    paths: paths.map((category) => ({
+      params: { category },
+    })),
+    fallback: false,
+  };
+};
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const category = params?.category as string;
+  const postsData: posts = await getSortedPostsData();
+
+  return {
+    props: {
+      category,
+      postsData,
+    },
+  };
+};
 
 export default async function CategoryPage({
-  params,
+  category,
+  postsData,
 }: {
-  params: { category: string };
+  category: string;
+  postsData: posts;
 }) {
-  const category = params.category;
-  const postsData: posts = await getSortedPostsData();
+  // const category = params.category;
+  // const postsData: posts = await getSortedPostsData();
 
   return (
     <>
@@ -70,6 +96,7 @@ export default async function CategoryPage({
           </Breadcrumb>
           <BlogCards
             posts={postsData.filter((p) => p.categories.includes(category))}
+            uiSwitch={null}
           ></BlogCards>
         </section>
       </main>

@@ -22,20 +22,47 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { assetPathResolver } from "@/utils/utils";
 import BlogCards from "@/components/BlogCards";
 import { useEffect, useState } from "react";
-export async function generateStaticParams() {
+import { posts } from "@/types/types";
+import { GetStaticPaths, GetStaticProps } from "next";
+// export async function generateStaticParams() {
+//   const paths = await getTags();
+
+//   return paths.map((path) => ({
+//     tag: path,
+//   }));
+// }
+
+export const getStaticPaths: GetStaticPaths = async () => {
   const paths = await getTags();
 
-  return paths.map((path) => ({
-    tag: path,
-  }));
-}
+  return {
+    paths: paths.map((tag) => ({
+      params: { tag },
+    })),
+    fallback: false,
+  };
+};
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const tag = params?.tag as string;
+  const postsData: posts = await getSortedPostsData();
 
-export default async function TagPage({ params }: { params: { tag: string } }) {
-  const tag = params.tag;
-  let postsData: posts = await getSortedPostsData();
+  return {
+    props: {
+      tag,
+      postsData,
+    },
+  };
+};
 
-  console.log("postsData[0].tags");
-  console.log(postsData[0].tags);
+export default async function TagPage({
+  tag,
+  postsData,
+}: {
+  tag: string;
+  postsData: posts;
+}) {
+  // const tag = params.tag;
+  // let postsData: posts = await getSortedPostsData();
 
   return (
     <>
@@ -71,6 +98,7 @@ export default async function TagPage({ params }: { params: { tag: string } }) {
           </Breadcrumb>
           <BlogCards
             posts={postsData.filter((p) => p.tags.includes(tag))}
+            uiSwitch={null}
           ></BlogCards>
         </section>
       </main>

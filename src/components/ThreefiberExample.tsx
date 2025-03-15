@@ -12,7 +12,7 @@ import {
 } from "@react-three/postprocessing";
 import { easing } from "maath";
 import { suspend } from "suspend-react";
-import { Instances, Computers } from "./Computers";
+import { Instances, Computers } from "./3d-objects/Computers";
 import { useTheme } from "next-themes";
 const suzi = import("@pmndrs/assets/models/bunny.glb") as Promise<any>;
 function Box(props: ThreeElements["mesh"]) {
