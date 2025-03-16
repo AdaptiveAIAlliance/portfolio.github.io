@@ -6,7 +6,7 @@ import {
   getSortedPostsData,
 } from "../../../lib/posts";
 
-import Header from "@/components/Header";
+import Header from "@/components/HeaderBar";
 import Image from "next/image";
 import {
   Breadcrumb,

@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import { profile } from "../configs/profle_data";
 import { ThemeProvider } from "next-themes";
 
-import Header from "@/components/Header";
+import Header from "@/components/HeaderBar";
 import ThreeFiberScene from "@/components/ThreefiberExample";
 import Head from "next/head";
 

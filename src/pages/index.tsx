@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import Header from "@/components/Header";
+import Header from "@/components/HeaderBar";
 import { profile } from "../configs/profle_data";
 import Link from "next/link";
 import ThreeScene from "@/components/ThreeScene";

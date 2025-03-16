@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "../page.module.css";
 import ThreeFiberScene from "@/components/ThreefiberExample";
-import Header from "@/components/Header";
+import Header from "@/components/HeaderBar";
 
 import { getCategories, getTags } from "../../lib/posts";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
