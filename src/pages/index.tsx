@@ -45,7 +45,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import Autoplay from "embla-carousel-autoplay";
 import BasicParallax from "@/components/BasicParallax";
-import BlogCards from "@/components/BlogCards";
+import BlogCards from "@/components/BlogCardsBlock";
 import { posts } from "@/types/types";
 import { getSortedPostsData } from "@/lib/posts";
 import { GetStaticProps } from "next";

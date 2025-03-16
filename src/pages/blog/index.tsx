@@ -13,7 +13,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 
-import BlogCards from "@/components/BlogCards";
+import BlogCards from "@/components/BlogCardsBlock";
 import { GetStaticProps } from "next";
 import { posts } from "@/types/types";
 

@@ -20,7 +20,7 @@ import {
 import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { assetPathResolver } from "@/utils/utils";
-import BlogCards from "@/components/BlogCards";
+import BlogCards from "@/components/BlogCardsBlock";
 import { useEffect, useState } from "react";
 import { posts } from "@/types/types";
 import { GetStaticPaths, GetStaticProps } from "next";
