@@ -8,8 +8,6 @@ tags:
   - "Tag4"
 categories: ["Cat1", "Cat2", "Cat3", "Cat5"]
 featImage: "test.png"
-author: "John Duo"
-authorImage: "/AAA_profile_pic.png"
 alt: "test"
 author: "john Due"
 authorImage: "/AAA_profile_pic.png"

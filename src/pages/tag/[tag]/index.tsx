@@ -24,13 +24,6 @@ import BlogCards from "@/components/BlogCards";
 import { useEffect, useState } from "react";
 import { posts } from "@/types/types";
 import { GetStaticPaths, GetStaticProps } from "next";
-// export async function generateStaticParams() {
-//   const paths = await getTags();
-
-//   return paths.map((path) => ({
-//     tag: path,
-//   }));
-// }
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = await getTags();
