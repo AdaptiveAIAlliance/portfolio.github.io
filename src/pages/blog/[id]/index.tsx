@@ -13,9 +13,9 @@ import {
 import Link from "next/link";
 import { assetPathResolver } from "@/utils/utils";
 import { badgeVariants } from "@/components/ui/badge";
-import BlogAuthor from "@/components/BlogAuthor";
 import { post } from "@/types/types";
 import { GetStaticPaths, GetStaticProps } from "next";
+import BlogAuthor from "@/components/AuthorBlock";
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = await getAllPostIds();
   console.log(paths);
