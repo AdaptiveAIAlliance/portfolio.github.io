@@ -11,8 +11,8 @@ import SvgThemeModeIcon from "./svgs/SvgThemeModeIcon";
 import AnimatedCursor from "react-animated-cursor";
 import SvgLogo from "./svgs/SvgLogo";
 export default function Header() {
-  const { theme, setTheme } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
+  const { theme, setTheme } = useTheme();
 
   useEffect(() => {
     if (theme !== "undefined") {
@@ -55,7 +55,7 @@ export default function Header() {
             <SvgGridIcon
               isActive={isOpen}
               className="stroke-slate-200 dark:stroke-lime-300"
-            />{" "}
+            />
           </button>
           <ul
             className={`flex flex-col gap-y-8 items-center pt-10 mt-2 text-2xl fixed min-h-screen min-w-full left-0 right-0 top-20 bottom-0 bg-opacity-20 dark:bg-opacity-20 bg-slate-400 dark:bg-emerald-700 border border-gray-300 border-opacity-20 dark:border-gray-900 ease-in-out duration-700 ${
