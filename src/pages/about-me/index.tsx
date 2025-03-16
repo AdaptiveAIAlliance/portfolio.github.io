@@ -53,8 +53,6 @@ export default function Home() {
   };
   return (
     <>
-      <ThreeFiberScene />
-      <Header />
       <main className="flex text-neutral-900  dark:text-emerald-100 flex-col justify-between sm:px-24 px-8  ">
         <Tabs
           defaultValue="hi"
