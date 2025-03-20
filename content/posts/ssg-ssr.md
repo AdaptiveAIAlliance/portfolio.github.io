@@ -6,7 +6,7 @@ tags:
   - "Tag3"
 
 categories: ["Cat1", "Cat2", "Cat4"]
-featImage: "test.png"
+featImage: "feature-image.png"
 alt: "test"
 author: "john Due"
 authorImage: "/AAA_profile_pic.png"

@@ -1,11 +1,4 @@
-import {
-  Dispatch,
-  MouseEvent,
-  MouseEventHandler,
-  ReactNode,
-  SetStateAction,
-  useState,
-} from "react";
+import { MouseEvent, ReactNode, useEffect } from "react";
 import SimpleThree, { ISimpleThree } from "@/lib/data-structures/simple-three";
 import {
   ContextMenu,
@@ -14,61 +7,106 @@ import {
 } from "@radix-ui/react-context-menu";
 import { ContextMenuContent } from "../ui/context-menu";
 import { File, Folder, FolderOpen, MinusIcon, PlusIcon } from "lucide-react";
-import { FcOpenedFolder } from "react-icons/fc";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
+import {
+  selectNode,
+  selectOpenedFolders,
+  selectRenameName,
+  selectSelected,
+  setNode,
+  setOpenedFolders,
+  setRenameName,
+  setSelected,
+} from "@/lib/features/file-three/fileThreeSlice";
+const placeHolderNode = new SimpleThree({
+  name: "Root",
+  children: [
+    new SimpleThree({
+      name: "user",
+      children: [
+        new SimpleThree({ name: "document", children: [] }),
+        new SimpleThree({ name: "photos", children: [] }),
+      ],
+    }),
+    new SimpleThree({
+      name: "system",
+      children: [
+        new SimpleThree({ name: "programs" }),
+        new SimpleThree({ name: "files" }),
+      ],
+    }),
+    new SimpleThree({
+      name: "workspace",
+      children: [
+        new SimpleThree({ name: "project_a", children: [] }),
+        new SimpleThree({ name: "project_b", children: [] }),
+      ],
+    }),
+  ],
+});
 export default function FileThree({
-  node,
+  node = placeHolderNode,
   className,
 }: {
   node: ISimpleThree;
   className?: string;
 }) {
+  const dispatch = useAppDispatch();
+  const selected = useAppSelector(selectSelected);
+  const openedFolders = useAppSelector(selectOpenedFolders);
+  const renameName = useAppSelector(selectRenameName);
+  const sliceNode = useAppSelector(selectNode);
+  // const sliceNode = SimpleThree.fromJSON(sliceNodeJSON);
   // const [files, setFiles] = useState<FileList | null>(null);
-  const [selected, setSelected] = useState<string>("");
-  const [openedFolders, setOpenedFolders] = useState<string[]>([]);
-  console.log(node.name);
+  // const [selected, setSelected] = useState<string>("");
+  // const [openedFolders, setOpenedFolders] = useState<string[]>([]);
+  useEffect(() => {
+    if (node) {
+      console.log(node.toJSON());
+      console.log(SimpleThree.fromJSON(node.toJSON()));
 
-  const Menu = ({
-    node,
-    selected,
-    setSelected,
-    children,
-    openedFolders,
-    setOpenedFolders,
-  }: {
-    node: ISimpleThree;
-    selected: string;
-    setSelected: Dispatch<SetStateAction<string>>;
-    children: ReactNode;
-    openedFolders: string[];
-    setOpenedFolders: Dispatch<SetStateAction<string[]>>;
-  }) => {
+      dispatch(setNode(node.toJSON()));
+    }
+  }, []);
+  const Menu = ({ children }: { children: ReactNode }) => {
+    const dispatch = useAppDispatch();
+    const selected = useAppSelector(selectSelected);
+    const openedFolders = useAppSelector(selectOpenedFolders);
+    const sliceNode = useAppSelector(selectNode);
+    // console.log(sliceNode.toJSON());
+
+    // const sliceNode = SimpleThree.fromJSON(sliceNodeJSON);
     const handleAddItem = (
       name: string,
-      selected: string,
+
       type: "Folder" | "File"
     ) => {
       if (selected !== "") {
-        const target = node.findByid(selected);
+        const target = sliceNode.findByid(selected);
         if (target) {
           openedFolders.indexOf(target.id) === -1 &&
-            setOpenedFolders([...openedFolders, target.id]);
+            dispatch(setOpenedFolders([...openedFolders, target.id]));
 
           if (target.getChildren() !== null) {
             const addedNode = target.addChild(
-              new SimpleThree(name, target, type === "Folder" ? [] : undefined)
+              new SimpleThree({
+                name: name,
+                parent: target,
+                children: type === "Folder" ? [] : null,
+              })
             );
-            setSelected(`${addedNode.id}:rename`);
+            dispatch(setSelected(`${addedNode.id}:rename`));
           } else {
             const parent = target.getParent();
             if (parent) {
               const addedNode = parent.addChild(
-                new SimpleThree(
-                  name,
-                  target,
-                  type === "Folder" ? [] : undefined
-                )
+                new SimpleThree({
+                  name: name,
+                  parent: target,
+                  children: type === "Folder" ? [] : undefined,
+                })
               );
-              setSelected(`${addedNode.id}:rename`);
+              dispatch(setSelected(`${addedNode.id}:rename`));
             } else {
               alert("Can not add to a file");
             }
@@ -79,16 +117,16 @@ export default function FileThree({
       }
     };
     const handleCreateFolder = () => {
-      handleAddItem("New Folder", selected, "Folder");
+      handleAddItem("New Folder", "Folder");
     };
     const handleCreateFile = () => {
-      handleAddItem("New File", selected, "File");
+      handleAddItem("New File", "File");
     };
     const handleRename = () => {
       if (selected !== "") {
-        const target = node.findByid(selected);
+        const target = sliceNode.findByid(selected);
         if (target) {
-          setSelected(`${target.id}:rename`);
+          dispatch(setSelected(`${target.id}:rename`));
         }
       } else {
         alert("Please select an item first");
@@ -113,34 +151,37 @@ export default function FileThree({
   const FileThreeContent = ({
     className,
     node,
-    selected,
-    setSelected,
-    openedFolders,
-    setOpenedFolders,
   }: {
     className?: string;
     node: ISimpleThree;
-    selected?: string;
-    setSelected?: Dispatch<SetStateAction<string>>;
-    openedFolders: string[];
-    setOpenedFolders: Dispatch<SetStateAction<string[]>>;
   }) => {
+    const dispatch = useAppDispatch();
+    const selected = useAppSelector(selectSelected);
+    const openedFolders = useAppSelector(selectOpenedFolders);
+    const renameName = useAppSelector(selectRenameName);
     const children = node.getChildren();
     const handleOpenFolder = (e: MouseEvent) => {
-      setOpenedFolders(
-        openedFolders.indexOf(node.id) !== -1
-          ? openedFolders.filter((id) => id !== node.id)
-          : [...openedFolders, node.id]
+      dispatch(
+        setOpenedFolders(
+          openedFolders.indexOf(node.id) !== -1
+            ? openedFolders.filter((id) => id !== node.id)
+            : [...openedFolders, node.id]
+        )
       );
+      // setOpenedFolders(
+      //   openedFolders.indexOf(node.id) !== -1
+      //     ? openedFolders.filter((id) => id !== node.id)
+      //     : [...openedFolders, node.id]
+      // );
     };
     const handleSelect = (e: MouseEvent) => {
       !selected?.split(":")[1] &&
-        setSelected &&
-        (selected !== node.id ? setSelected(node.id) : setSelected(""));
+        (selected !== node.id
+          ? dispatch(setSelected(node.id))
+          : dispatch(setSelected("")));
     };
     const isOpen = openedFolders.indexOf(node.id) !== -1;
     const isFolder = node.getChildren() !== null;
-    const [name, setName] = useState<string>("");
     return (
       <>
         <details
@@ -175,25 +216,27 @@ export default function FileThree({
                   autoFocus
                   className="px-2 w-fit my-px text-slate-600 dark:text-emerald-300 block border border-slate-400 dark:border-emerald-400 animate-pulse"
                   type="text"
-                  value={name}
+                  value={renameName}
                   onChange={(e) => {
                     e.preventDefault();
-                    setName(e.target.value);
+                    dispatch(setRenameName(e.target.value));
                   }}
                   onBlur={(e) => {
-                    if (node.parent?.children?.some((e) => e.name === name)) {
+                    if (
+                      node.parent?.children?.some((e) => e.name === renameName)
+                    ) {
                       return alert("Another item with a same name exist");
                     }
-                    if (name) {
+                    if (renameName) {
                       if (openedFolders.indexOf(node.id) !== -1) {
                         openedFolders.filter((id) => id !== node.id);
-                        node.setName(name);
-                        setOpenedFolders([...openedFolders, node.id]);
+                        node.setName(renameName);
+                        dispatch(setOpenedFolders([...openedFolders, node.id]));
                       } else {
-                        node.setName(name);
+                        node.setName(renameName);
                       }
-                      setName("");
-                      setSelected && setSelected(node.id);
+                      dispatch(setRenameName(""));
+                      dispatch(setSelected(node.id));
                     } else {
                       alert("please entere a name");
                       e.target.focus();
@@ -207,15 +250,7 @@ export default function FileThree({
           </summary>
           {children != null && children.length > 0
             ? children.map((child, index: number) => (
-                <FileThreeContent
-                  key={index}
-                  node={child}
-                  selected={selected}
-                  setSelected={setSelected}
-                  openedFolders={openedFolders}
-                  setOpenedFolders={setOpenedFolders}
-                  className="pl-4"
-                />
+                <FileThreeContent key={index} node={child} className="pl-4" />
               ))
             : null}
         </details>
@@ -224,21 +259,9 @@ export default function FileThree({
   };
 
   return (
-    <Menu
-      node={node}
-      selected={selected}
-      setSelected={setSelected}
-      openedFolders={openedFolders}
-      setOpenedFolders={setOpenedFolders}
-    >
-      <div className="w-full p-4 bg-slate-100 dark:bg-slate-900 rounded-lg">
-        <FileThreeContent
-          node={node}
-          selected={selected}
-          setSelected={setSelected}
-          openedFolders={openedFolders}
-          setOpenedFolders={setOpenedFolders}
-        />
+    <Menu>
+      <div className="w-full h-80 overflow-scroll p-4 bg-slate-100 dark:bg-slate-900 rounded-lg">
+        <FileThreeContent node={sliceNode} className={className} />
       </div>
     </Menu>
   );

@@ -1,6 +1,5 @@
 import Link from "next/link";
-import { badgeVariants } from "./ui/badge";
-import { FcFile, FcFolder } from "react-icons/fc";
+
 import { buttonVariants } from "./ui/button";
 import { Folder, MailOpen } from "lucide-react";
 import { useTheme } from "next-themes";

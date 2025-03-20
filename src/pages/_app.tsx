@@ -4,6 +4,7 @@ import RootLayout from "./layout";
 import Loading from "./loading";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import { StoreProvider } from "../components/StoreProvider/StoreProvider";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   const [loading, setLoading] = useState(false);
@@ -23,8 +24,10 @@ export default function MyApp({ Component, pageProps }: AppProps) {
     };
   }, []);
   return (
-    <RootLayout>
-      {loading ? <Loading /> : <Component {...pageProps} />}
-    </RootLayout>
+    <StoreProvider>
+      <RootLayout>
+        {loading ? <Loading /> : <Component {...pageProps} />}
+      </RootLayout>
+    </StoreProvider>
   );
 }

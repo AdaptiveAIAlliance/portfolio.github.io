@@ -1,3 +1,5 @@
+import { fromJSON } from "postcss";
+
 export interface ISimpleThree {
   id: string;
   children?: ISimpleThree[] | null;
@@ -13,6 +15,8 @@ export interface ISimpleThree {
   getRoot: () => ISimpleThree | void;
   getDepth: () => number;
   findByid: (id: string) => ISimpleThree | void;
+  toJSON: () => object;
+  // Remove the fromJSON method from the interface as it should be a static method in the class
 }
 
 export default class SimpleThree implements ISimpleThree {
@@ -20,7 +24,16 @@ export default class SimpleThree implements ISimpleThree {
   name: string;
   parent?: ISimpleThree | null;
   children?: ISimpleThree[] | null;
-  constructor(name: string, parent?: ISimpleThree, children?: ISimpleThree[]) {
+  constructor({
+    name,
+    parent,
+    children,
+  }: {
+    name: string;
+    parent?: ISimpleThree | null;
+    children?: ISimpleThree[] | null;
+  }) {
+    this.parent = parent || null;
     this.id = parent ? `${parent.id}/${name}` : name;
     this.children = children
       ? children.map((c) => {
@@ -28,7 +41,6 @@ export default class SimpleThree implements ISimpleThree {
           return c;
         })
       : null;
-    this.parent = parent || null;
     this.name = name;
   }
 
@@ -88,5 +100,33 @@ export default class SimpleThree implements ISimpleThree {
         return result;
       }
     }
+  }
+
+  toJSON(): object {
+    return {
+      name: this.name,
+      children: this.children
+        ? this.children.map((child) => child.toJSON())
+        : null,
+      // Add other properties as needed
+    };
+  }
+
+  static fromJSON(json: any) {
+    console.log(json);
+
+    // console.log(
+    //   json.children.map((child: ISimpleThree) => SimpleThree.fromJSON(child))
+    // );
+    const children = json.children
+      ? json.children.map((child: ISimpleThree) => SimpleThree.fromJSON(child))
+      : undefined;
+    console.log(children);
+
+    return new SimpleThree({
+      name: json.name,
+      children: children,
+      // Add other properties as needed
+    });
   }
 }

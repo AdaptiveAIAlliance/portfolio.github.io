@@ -122,20 +122,9 @@ export default function Home({
       ),
     },
     {
-      title: "UI components",
-      description: "Read the lates content",
-      content: (
-        <BlogCards
-          posts={posts}
-          uiSwitch={{
-            clasification: false,
-            intro: true,
-            image: true,
-            title: true,
-            layout: "row",
-          }}
-        ></BlogCards>
-      ),
+      title: "Get in touch",
+      description: "",
+      content: <div></div>,
     },
   ];
   return (

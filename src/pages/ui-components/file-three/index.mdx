@@ -32,54 +32,70 @@ export const metadata = {
   author: "John Doe",
 };
 
-      <main className="flex text-neutral-900  dark:text-emerald-100 flex-col justify-between sm:px-24 px-8   pt-32">
-        <section className="border-slate-100 border  rounded-3xl overflow-hidden  mb-16 w-full sm:w-full justify-items-start text-neutral-900 bg-clip-padding backdrop-filter backdrop-blur-xl bg-slate-400 dark:bg-emerald-900 bg-opacity-60 dark:bg-opacity-40 dark:border-neutral-950">
+<main className="flex text-neutral-900  dark:text-emerald-100 flex-col justify-between sm:px-24 px-8   pt-32">
+<section className="border-slate-100 border  rounded-3xl overflow-hidden  mb-16 w-full sm:w-full justify-items-start text-neutral-900 bg-clip-padding backdrop-filter backdrop-blur-xl bg-slate-400 dark:bg-emerald-900 bg-opacity-60 dark:bg-opacity-40 dark:border-neutral-950">
 
-        <Breadcrumb className="mx-8">
-          <BreadcrumbList className=" text-neutral-900 dark:text-emerald-100 m-4">
-            <BreadcrumbItem>
-              <BreadcrumbPage className="hover:text-neutral-400">
-                <Link href="/">Home</Link>
-              </BreadcrumbPage>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator />
-            <BreadcrumbItem>
-              <BreadcrumbPage className="hover:text-neutral-400">
-                <Link href="/ui-compinents">ui-compinents</Link>
-              </BreadcrumbPage>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator />
-            <BreadcrumbItem>
-              <BreadcrumbPage>file three</BreadcrumbPage>
-            </BreadcrumbItem>
-          </BreadcrumbList>
-        </Breadcrumb>
-        <h1 className="text-2xl p-4  dark:text-emerald-100 ">
-          file three
-        </h1>
+<Breadcrumb className="mx-8">
+  <BreadcrumbList className=" text-neutral-900 dark:text-emerald-100 m-4">
+    <BreadcrumbItem>
+      <BreadcrumbPage className="hover:text-neutral-400">
+        <Link href="/">Home</Link>
+      </BreadcrumbPage>
+    </BreadcrumbItem>
+    <BreadcrumbSeparator />
+    <BreadcrumbItem>
+      <BreadcrumbPage className="hover:text-neutral-400">
+        <Link href="/ui-compinents">ui-compinents</Link>
+      </BreadcrumbPage>
+    </BreadcrumbItem>
+    <BreadcrumbSeparator />
+    <BreadcrumbItem>
+      <BreadcrumbPage>file three</BreadcrumbPage>
+    </BreadcrumbItem>
+  </BreadcrumbList>
+</Breadcrumb>
+<h1 className="text-2xl p-4  dark:text-emerald-100 ">File three</h1>
 
-        <div
-          className="px-8 pb-8 w-full  dark:text-emerald-100 "
-        >
-        # Welcome to my MDX page!
+<div
+  className="px-8 pb-8 w-full  dark:text-emerald-100 "
+>
+## Displaying FileThree Component
 
-        This is some **bold** and _italics_ text.
+This page demonstrates how to integrate and display the `FileThree` component within your React site.
 
-        This is a list in markdown:
+<div className="my-4">
+  <FileThree />
+</div>
+### What is FileThree?
 
-        - One
-        - Two
-        - Three
-        - four
-        - five
+`FileThree` is a custom React component designed to visualize a hierarchical file structure. It helps in rendering and navigating through nested file directories in a visually appealing manner.
 
-{" "}
+## Importing and Using FileThree
 
-<FileThree node={node} />
+To use the `FileThree` component, you need to import it from the `@/components/ui-components/FileThree` module. Below is an example of how to import and use it in your MDX file:
 
-Checkout my React component:
+<div className="bg-neutral-600/40 text-red-500 rounded-2xl mx-4 p-4" style={{background: "rgb(82 82 82 / 0.2)", margin: ".5rem"}}>
 
-      </div>
+```jsx
+import FileThree from "@/components/ui-components/FileThree";
+
+const MyComponent = () => {
+  return (
+    <div>
+      <h2>My File Structure</h2>
+      <FileThree />
+    </div>
+  );
+};
+
+export default MyComponent;
+```
+
+</div>
+
+In the above example, we first import the `FileThree` component. Then, we create a new component called `MyComponent` that renders the `FileThree` component within a `div` element. Finally, we export `MyComponent` as the default export.
+
+</div>
 
 </section>
 </main>
