@@ -42,7 +42,7 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
+import { Badge, badgeVariants } from "@/components/ui/badge";
 import Autoplay from "embla-carousel-autoplay";
 import BasicParallax from "@/components/BasicParallax";
 import BlogCards from "@/components/BlogCardsBlock";
@@ -50,6 +50,9 @@ import { posts } from "@/types/types";
 import { getSortedPostsData } from "@/lib/posts";
 import { GetStaticProps } from "next";
 import { getUIComponentData } from "@/lib/staticFilesUtils";
+import { FcFolder } from "react-icons/fc";
+import UIComponentsList from "@/components/UIComponentsList";
+import GlassContainer from "@/components/GlassContainer";
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   // const posts = await getSortedPostsData();
@@ -62,7 +65,13 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     },
   };
 };
-export default function Home({ posts, data }: { posts: posts; data: any }) {
+export default function Home({
+  posts,
+  data,
+}: {
+  posts: posts;
+  data: { uiComponentPaths: string[] };
+}) {
   // const [posts, setPosts] = useState<posts>([]);
   // // const onTabChange = (value: string) => {};
   // useEffect(() => {
@@ -80,7 +89,6 @@ export default function Home({ posts, data }: { posts: posts; data: any }) {
       description: "Read the lates content",
 
       content: (
-        // <p>test</p>
         <BlogCards
           posts={posts}
           uiSwitch={{
@@ -95,18 +103,22 @@ export default function Home({ posts, data }: { posts: posts; data: any }) {
     },
     {
       title: "UI components",
-      description: "Read the lates content",
+      description: "Checkout lates components",
       content: (
-        <BlogCards
-          posts={posts}
-          uiSwitch={{
-            clasification: false,
-            intro: true,
-            image: true,
-            title: true,
-            layout: "row",
-          }}
-        ></BlogCards>
+        <div className="flex flex-col w-full justify-between">
+          <UIComponentsList paths={data.uiComponentPaths}></UIComponentsList>
+
+          <Link
+            className={` w-20 text-center justify-center place-self-end  ${badgeVariants(
+              {
+                variant: "secondary",
+              }
+            )} `}
+            href={`/ui-components/`}
+          >
+            View all
+          </Link>
+        </div>
       ),
     },
     {
@@ -138,7 +150,7 @@ export default function Home({ posts, data }: { posts: posts; data: any }) {
             }}
             plugins={[
               Autoplay({
-                delay: 4000,
+                delay: 5000,
               }),
             ]}
             className="w-full flex flex-col items-center align-middle justify-center content-center "
@@ -158,9 +170,7 @@ export default function Home({ posts, data }: { posts: posts; data: any }) {
                     </h2>
                     <p>{c.description}</p>
                   </div>
-                  <div className="flex p-4  rounded-2xl min-h-[50vh] min-w-[70vw] w-[70vw] h-[50vh] backdrop-filter backdrop-blur-xl bg-slate-200 dark:bg-emerald-900 bg-opacity-40 dark:bg-opacity-40 dark:bg-emerald-800/40">
-                    {c.content}
-                  </div>
+                  <GlassContainer>{c.content}</GlassContainer>
                 </CarouselItem>
               ))}
             </CarouselContent>

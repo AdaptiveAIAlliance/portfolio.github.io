@@ -8,19 +8,14 @@ const contentDirectory = path.join(
   "ui-components"
 );
 export async function getUIComponentData() {
-  const uiComponentFolderName = fs.readdirSync(contentDirectory);
-  return {
-    uiComponentFolderName,
-  };
+  const uiComponentFiles = fs.readdirSync(contentDirectory);
+
+  const uiComponentPaths = uiComponentFiles.map((e) => {
+    if (e == "index.tsx") {
+      return "/";
+    }
+    return e;
+  });
+
+  return { uiComponentPaths };
 }
-
-// import path from "path";
-// import matter from "gray-matter";
-// import { remark } from "remark";
-// import html from "remark-html";
-
-// export const uiComponentPageName = async (): Promise<string[]> => {
-//   const fileNames = fs.readdirSync(contentDirectory);
-
-//   return [];
-// };
