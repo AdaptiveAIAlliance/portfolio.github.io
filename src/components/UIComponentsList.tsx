@@ -33,7 +33,7 @@ export default function UIComponentsList({ paths }: { paths: string[] }) {
               <Link
                 className={`  ${buttonVariants({
                   variant: "default",
-                })} text-lg dark:text-emerald-900 gap-2 justify-between hover:animate-bounce `}
+                })} text-lg dark:text-emerald-900 gap-2 justify-between hover:animate-pulse `}
                 key={i}
                 href={`/ui-components/${p}`}
               >

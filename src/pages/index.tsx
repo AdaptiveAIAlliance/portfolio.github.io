@@ -53,6 +53,7 @@ import { getUIComponentData } from "@/lib/staticFilesUtils";
 import { FcFolder } from "react-icons/fc";
 import UIComponentsList from "@/components/UIComponentsList";
 import GlassContainer from "@/components/GlassContainer";
+import { Github, icons, Linkedin, Mail } from "lucide-react";
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   // const posts = await getSortedPostsData();
@@ -124,7 +125,46 @@ export default function Home({
     {
       title: "Get in touch",
       description: "",
-      content: <div></div>,
+      content: (
+        <section
+          id="contact"
+          className="flex flex-col m-auto w-[32rem] items-center text-center "
+        >
+          <h3 className="text-xl font-bold mb-12 ">Contact Me</h3>
+          <p>
+            I&apos;d love to hear from you. Whether you have a project idea, a
+            question, or just want to chat, please don&apos;t hesitate to reach
+            out.
+          </p>
+
+          <div className="contact-details flex gap-8 justify-around flex-wrap mt-10">
+            {[
+              {
+                title: "Email",
+                href: "mailto:your.email@example.com",
+                icon: <Mail size={14} />,
+              },
+              {
+                title: "Linkedin",
+                href: "mailto:your.email@example.com",
+                icon: <Linkedin size={14} />,
+              },
+              {
+                title: "Github",
+                href: "mailto:your.email@example.com",
+                icon: <Github size={14} />,
+              },
+            ].map((c, i) => (
+              <Button key={i} className="felx gap-x-2 hover:animate-pulse">
+                {c.icon}
+                <a href={c.href}>
+                  <h4>{c.title}</h4>
+                </a>
+              </Button>
+            ))}
+          </div>
+        </section>
+      ),
     },
   ];
   return (
@@ -139,12 +179,12 @@ export default function Home({
             }}
             plugins={[
               Autoplay({
-                delay: 5000,
+                delay: 6000,
               }),
             ]}
             className="w-full flex flex-col items-center align-middle justify-center content-center "
           >
-            <h1 className="fixed top-28 left-4 self-start -rotate-[35deg]  mt-10 ml-10 block [text-shadow:_0_0_20px_rgba(10,10,10,1)] dark:[text-shadow:_0_0_20px_rgba(209,250,229,.8)] text-3xl font-bold font-[cursive]  animate-pulse blur-[1px]  text-neutral-700  dark:text-emerald-700">
+            <h1 className="fixed top-24 left-1 self-start -rotate-[24deg]  mt-8 ml-4 block [text-shadow:_0_0_20px_rgba(10,10,10,1)] dark:[text-shadow:_0_0_20px_rgba(209,250,229,.8)] text-3xl font-bold font-[cursive]  animate-pulse blur-[1px]  text-neutral-700  dark:text-emerald-700">
               What&apos;s new?
             </h1>
             <CarouselContent className="rounded-t-2xl  h-[60vh]   w-4/5 m-auto ">
@@ -159,7 +199,7 @@ export default function Home({
                     </h2>
                     <p>{c.description}</p>
                   </div>
-                  <GlassContainer>{c.content}</GlassContainer>
+                  <GlassContainer className="">{c.content}</GlassContainer>
                 </CarouselItem>
               ))}
             </CarouselContent>
