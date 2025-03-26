@@ -13,21 +13,7 @@ import Image from "next/image";
 import { assetPathResolver } from "@/utils/utils";
 import { badgeVariants } from "@/components/ui/badge";
 import FileThree from "@/components/ui-components/FileThree";
-import SimpleThree, { ISimpleThree } from "@/lib/data-structures/simple-three";
-export const node = new SimpleThree("Root", null, [
-  new SimpleThree("user", null, [
-    new SimpleThree("document", null, []),
-    new SimpleThree("photos", null, []),
-  ]),
-  new SimpleThree("system", null, [
-    new SimpleThree("programs", null),
-    new SimpleThree("files", null),
-  ]),
-  new SimpleThree("workspace", null, [
-    new SimpleThree("project_a", null, []),
-    new SimpleThree("project_b", null, []),
-  ]),
-]);
+
 export const metadata = {
   author: "John Doe",
 };
@@ -45,7 +31,7 @@ export const metadata = {
     <BreadcrumbSeparator />
     <BreadcrumbItem>
       <BreadcrumbPage className="hover:text-neutral-400">
-        <Link href="/ui-compinents">ui-compinents</Link>
+        <Link href="/ui-components">ui-compinents</Link>
       </BreadcrumbPage>
     </BreadcrumbItem>
     <BreadcrumbSeparator />
@@ -59,18 +45,28 @@ export const metadata = {
 <div
   className="px-8 pb-8 w-full  dark:text-emerald-100 "
 >
-## Displaying FileThree Component
+
+<h2 className="font-bold text-xl py-4">Displaying FileThree Component</h2>
 
 This page demonstrates how to integrate and display the `FileThree` component within your React site.
 
 <div className="my-4">
   <FileThree />
 </div>
-### What is FileThree?
 
-`FileThree` is a custom React component designed to visualize a hierarchical file structure. It helps in rendering and navigating through nested file directories in a visually appealing manner.
+<h3 className="font-bold text-lg py-4">What is FileThree?</h3>
 
-## Importing and Using FileThree
+FileThree is a custom React component that is used to visualize a hierarchical file structure. This means it helps in displaying and navigating through nested file directories in a way that is visually appealing and easy to understand.
+
+In a typical use case, FileThree would take a data structure representing files and directories and render it in a tree-like format. This allows users to expand and collapse directories to see the files contained within them, making it easier to navigate large and complex file systems.
+
+For example, if you have a directory structure like this:
+
+FileThree would render this structure in a way that users can click on folder1 and folder2 to expand and see the files and subdirectories inside them.
+
+This component is particularly useful in applications where users need to interact with file systems, such as code editors, file managers, or any application that requires file organization and navigation.
+
+<h2 className="font-bold text-xl py-4">Importing and Using FileThree</h2>
 
 To use the `FileThree` component, you need to import it from the `@/components/ui-components/FileThree` module. Below is an example of how to import and use it in your MDX file:
 

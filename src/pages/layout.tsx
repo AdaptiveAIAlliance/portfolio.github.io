@@ -6,6 +6,7 @@ import { ThemeProvider } from "next-themes";
 import Header from "@/components/HeaderBar";
 import ThreeFiberScene from "@/components/ThreefiberExample";
 import Head from "next/head";
+import { assetPathResolver } from "@/utils/utils";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -29,12 +30,41 @@ export default function RootLayout({
     //   </Head>
     //
     // <body className={inter.className + " bg-neutral-900 "}>
+    <>
+      <Head>
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href={assetPathResolver("/apple-touch-icon.png")}
+        />
+        {/* <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/layout/favicon/favicon-32x32.png"
+        /> */}
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="96x96"
+          href={assetPathResolver("/favicon-96x96.png")}
+        />
+        <link rel="shortcut icon" href={assetPathResolver("/favicon.ico")} />
 
-    <ThemeProvider attribute="class">
-      <ThreeFiberScene />
-      <Header />
-      {children}
-    </ThemeProvider>
+        <link rel="manifest" href={assetPathResolver("/site.webmanifest")} />
+        <link
+          rel="mask-icon"
+          href={assetPathResolver("/favicon.ico")}
+          color="#000000"
+        />
+        {/* <link rel="icon" href="/favicon.ico" /> */}
+      </Head>
+      <ThemeProvider attribute="class">
+        <ThreeFiberScene />
+        <Header />
+        {children}
+      </ThemeProvider>
+    </>
     // </body>
     // </html>
   );

@@ -54,3 +54,8 @@ export type frontMatterResult = {
   bodyBegin: number;
   frontmatter: string;
 };
+export type BasicThree = {
+  tag: string;
+  children?: BasicThree[] | null;
+  name: string;
+};

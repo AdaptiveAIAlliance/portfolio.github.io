@@ -1,5 +1,11 @@
-import { MouseEvent, ReactNode, useEffect } from "react";
-import SimpleThree, { ISimpleThree } from "@/lib/data-structures/simple-three";
+import {
+  MouseEvent,
+  MutableRefObject,
+  ReactNode,
+  useEffect,
+  useRef,
+} from "react";
+
 import {
   ContextMenu,
   ContextMenuItem,
@@ -9,6 +15,8 @@ import { ContextMenuContent } from "../ui/context-menu";
 import { File, Folder, FolderOpen, MinusIcon, PlusIcon } from "lucide-react";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import {
+  addItem,
+  renameNode,
   selectNode,
   selectOpenedFolders,
   selectRenameName,
@@ -18,56 +26,58 @@ import {
   setRenameName,
   setSelected,
 } from "@/lib/features/file-three/fileThreeSlice";
-const placeHolderNode = new SimpleThree({
+import { BasicThree } from "@/types/types";
+import { BasicThreeHelper } from "@/lib/helpers/BasicThreeHelper";
+const placeHolderNode = BasicThreeHelper.makeThree({
   name: "Root",
   children: [
-    new SimpleThree({
+    BasicThreeHelper.makeThree({
       name: "user",
       children: [
-        new SimpleThree({ name: "document", children: [] }),
-        new SimpleThree({ name: "photos", children: [] }),
+        BasicThreeHelper.makeThree({ name: "document", children: [] }),
+        BasicThreeHelper.makeThree({ name: "photos", children: [] }),
       ],
     }),
-    new SimpleThree({
+    BasicThreeHelper.makeThree({
       name: "system",
       children: [
-        new SimpleThree({ name: "programs" }),
-        new SimpleThree({ name: "files" }),
+        BasicThreeHelper.makeThree({ name: "programs" }),
+        BasicThreeHelper.makeThree({ name: "files" }),
       ],
     }),
-    new SimpleThree({
+    BasicThreeHelper.makeThree({
       name: "workspace",
       children: [
-        new SimpleThree({ name: "project_a", children: [] }),
-        new SimpleThree({ name: "project_b", children: [] }),
+        BasicThreeHelper.makeThree({ name: "project_a", children: [] }),
+        BasicThreeHelper.makeThree({ name: "project_b", children: [] }),
       ],
     }),
   ],
 });
 export default function FileThree({
-  node = placeHolderNode,
+  node,
   className,
 }: {
-  node: ISimpleThree;
+  node: BasicThree;
   className?: string;
 }) {
   const dispatch = useAppDispatch();
-  const selected = useAppSelector(selectSelected);
-  const openedFolders = useAppSelector(selectOpenedFolders);
-  const renameName = useAppSelector(selectRenameName);
+
   const sliceNode = useAppSelector(selectNode);
   // const sliceNode = SimpleThree.fromJSON(sliceNodeJSON);
   // const [files, setFiles] = useState<FileList | null>(null);
   // const [selected, setSelected] = useState<string>("");
   // const [openedFolders, setOpenedFolders] = useState<string[]>([]);
+  const hasMounted: MutableRefObject<boolean> = useRef(false);
   useEffect(() => {
-    if (node) {
-      console.log(node.toJSON());
-      console.log(SimpleThree.fromJSON(node.toJSON()));
-
-      dispatch(setNode(node.toJSON()));
+    if (!hasMounted.current) {
+      if (node) {
+        dispatch(setNode(node));
+      }
+      hasMounted.current = true;
     }
-  }, []);
+  }, [node, dispatch]);
+  useEffect(() => {}, []);
   const Menu = ({ children }: { children: ReactNode }) => {
     const dispatch = useAppDispatch();
     const selected = useAppSelector(selectSelected);
@@ -82,36 +92,7 @@ export default function FileThree({
       type: "Folder" | "File"
     ) => {
       if (selected !== "") {
-        const target = sliceNode.findByid(selected);
-        if (target) {
-          openedFolders.indexOf(target.id) === -1 &&
-            dispatch(setOpenedFolders([...openedFolders, target.id]));
-
-          if (target.getChildren() !== null) {
-            const addedNode = target.addChild(
-              new SimpleThree({
-                name: name,
-                parent: target,
-                children: type === "Folder" ? [] : null,
-              })
-            );
-            dispatch(setSelected(`${addedNode.id}:rename`));
-          } else {
-            const parent = target.getParent();
-            if (parent) {
-              const addedNode = parent.addChild(
-                new SimpleThree({
-                  name: name,
-                  parent: target,
-                  children: type === "Folder" ? [] : undefined,
-                })
-              );
-              dispatch(setSelected(`${addedNode.id}:rename`));
-            } else {
-              alert("Can not add to a file");
-            }
-          }
-        }
+        dispatch(addItem({ name, type }));
       } else {
         alert("Please select an item first");
       }
@@ -124,9 +105,9 @@ export default function FileThree({
     };
     const handleRename = () => {
       if (selected !== "") {
-        const target = sliceNode.findByid(selected);
+        const target = BasicThreeHelper.findByid(sliceNode, selected);
         if (target) {
-          dispatch(setSelected(`${target.id}:rename`));
+          dispatch(setSelected(`${target.tag}:rename`));
         }
       } else {
         alert("Please select an item first");
@@ -153,19 +134,22 @@ export default function FileThree({
     node,
   }: {
     className?: string;
-    node: ISimpleThree;
+    node: BasicThree;
   }) => {
     const dispatch = useAppDispatch();
     const selected = useAppSelector(selectSelected);
     const openedFolders = useAppSelector(selectOpenedFolders);
     const renameName = useAppSelector(selectRenameName);
-    const children = node.getChildren();
+    const sliceNode = useAppSelector(selectNode);
+
+    const children = BasicThreeHelper.getChildren(node);
+
     const handleOpenFolder = (e: MouseEvent) => {
       dispatch(
         setOpenedFolders(
-          openedFolders.indexOf(node.id) !== -1
-            ? openedFolders.filter((id) => id !== node.id)
-            : [...openedFolders, node.id]
+          openedFolders.indexOf(node.tag) !== -1
+            ? openedFolders.filter((tag) => tag !== node.tag)
+            : [...openedFolders, node.tag]
         )
       );
       // setOpenedFolders(
@@ -175,13 +159,24 @@ export default function FileThree({
       // );
     };
     const handleSelect = (e: MouseEvent) => {
+      console.log(node);
+      console.log(node);
+      console.log(selected);
+      console.log(selected?.split(":")[1]);
+      console.log(selected?.split(":"));
+      console.log(selected?.split(":")[1] === "rename");
+      console.log(selected?.split(":")[0]);
+      console.log(selected?.split(":")[0] === node.tag);
+
       !selected?.split(":")[1] &&
-        (selected !== node.id
-          ? dispatch(setSelected(node.id))
+        (selected !== node.tag
+          ? dispatch(setSelected(node.tag))
           : dispatch(setSelected("")));
     };
-    const isOpen = openedFolders.indexOf(node.id) !== -1;
-    const isFolder = node.getChildren() !== null;
+    const isOpen = openedFolders.indexOf(node.tag) !== -1;
+    console.log(BasicThreeHelper.getChildren(node));
+
+    const isFolder = BasicThreeHelper.getChildren(node) !== null;
     return (
       <>
         <details
@@ -194,7 +189,7 @@ export default function FileThree({
           <summary
             className={`list-none flex gap-2 items-center  transition duration-300  ease-in-out transform
                 ${
-                  selected?.split(":")[0] === node.id
+                  selected?.split(":")[0] === node.tag
                     ? "dark:bg-lime-900 dark:text-lime-200 bg-slate-900 text-slate-200  scale-100"
                     : "bg-transparent"
                 }`}
@@ -210,7 +205,7 @@ export default function FileThree({
             )}
             <div className="flex gap-1 items-center" onClick={handleSelect}>
               {isFolder ? isOpen ? <FolderOpen /> : <Folder /> : <File />}
-              {selected?.split(":")[0] === node.id &&
+              {selected?.split(":")[0] === node.tag &&
               selected?.split(":")[1] === "rename" ? (
                 <input
                   autoFocus
@@ -223,20 +218,15 @@ export default function FileThree({
                   }}
                   onBlur={(e) => {
                     if (
-                      node.parent?.children?.some((e) => e.name === renameName)
+                      BasicThreeHelper.getParent(
+                        sliceNode,
+                        node
+                      )?.children?.some((e) => e.name === renameName)
                     ) {
                       return alert("Another item with a same name exist");
                     }
                     if (renameName) {
-                      if (openedFolders.indexOf(node.id) !== -1) {
-                        openedFolders.filter((id) => id !== node.id);
-                        node.setName(renameName);
-                        dispatch(setOpenedFolders([...openedFolders, node.id]));
-                      } else {
-                        node.setName(renameName);
-                      }
-                      dispatch(setRenameName(""));
-                      dispatch(setSelected(node.id));
+                      dispatch(renameNode(node.tag));
                     } else {
                       alert("please entere a name");
                       e.target.focus();
