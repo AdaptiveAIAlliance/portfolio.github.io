@@ -1,76 +1,70 @@
-import { BasicThree } from "@/types/types";
+import { BasicThree as BasicTree } from "@/types/types";
 
-export class BasicThreeHelper {
+export class BasicTreeHelper {
   static makeThree = ({
     name,
     children,
   }: {
     name: string;
-    children?: BasicThree[] | null;
+    children?: BasicTree[] | null;
   }) => {
-    const three: BasicThree = {
+    const tree: BasicTree = {
       tag: name,
       // parent ? `${parent.id}/${name}` : name,
       name,
     };
     if (children) {
-      children.forEach((child) => BasicThreeHelper.addChild(three, child));
+      children.forEach((child) => BasicTreeHelper.addChild(tree, child));
     } else {
-      three.children = null;
+      tree.children = null;
     }
-    return three;
+    return tree;
   };
 
-  static addChild = (node: BasicThree, child: BasicThree): BasicThree => {
+  static addChild = (node: BasicTree, child: BasicTree): BasicTree => {
     if (!node.children) {
       node.children = [];
     }
     const childToPush = { ...child, tag: `${node.tag}/${child.tag}` };
-    // BasicThreeHelper.setParent(child, node);
     node.children.push(childToPush);
     return childToPush;
   };
-  static removeChild = (node: BasicThree, child: BasicThree) => {
+  static removeChild = (node: BasicTree, child: BasicTree) => {
     if (!node.children) {
       return;
     }
     node.children = node.children.filter((c) => c !== child);
   };
-  static getChild = (node: BasicThree, name: string) => {
+  static getChild = (node: BasicTree, name: string) => {
     if (!node.children) {
       return;
     }
     return node.children.find((c) => c.name === name);
   };
-  static setName = (node: BasicThree, name: string): BasicThree | void => {
-    console.log(node.tag);
-    console.log(node.tag.split("/"));
-    console.log(node.tag.split("/").slice(0, -1));
-    console.log(node.tag.split("/").slice(0, -1).join("/") + "/" + name);
-    console.log(node.tag.split("/").slice(0, -1).join("/"));
+  static setName = (node: BasicTree, name: string): BasicTree | void => {
     node.name = name;
-    node.tag = node.tag.split("/").slice(0, -1).join("/") + "/" + name; // replaceLastOccurrence(node.id, node.name, name);
+    node.tag = node.tag.split("/").slice(0, -1).join("/") + "/" + name;
     return node;
   };
 
-  static getChildren = (node: BasicThree) => {
+  static getChildren = (node: BasicTree) => {
     return node.children;
   };
-  static getParent = (node: BasicThree, target: BasicThree) => {
+  static getParent = (node: BasicTree, target: BasicTree) => {
     const parentId: string = target.tag.split("/").slice(0, -1).join("/");
 
-    return BasicThreeHelper.findByid(node, parentId);
+    return BasicTreeHelper.findByid(node, parentId);
   };
   // static setParent = (node: BasicThree, parent: BasicThree) => {
   //   node.parent = parent;
   // };
-  static getRoot = (node: BasicThree): BasicThree | void => {
-    return BasicThreeHelper.findByid(node, "/");
+  static getRoot = (node: BasicTree): BasicTree | void => {
+    return BasicTreeHelper.findByid(node, "/");
   };
-  static getDepth = (node: BasicThree): number => {
+  static getDepth = (node: BasicTree): number => {
     return node.tag.split("/").length;
   };
-  static findByid = (node: BasicThree, tag: string): BasicThree | void => {
+  static findByid = (node: BasicTree, tag: string): BasicTree | void => {
     if (node.tag === tag) {
       return node;
     }

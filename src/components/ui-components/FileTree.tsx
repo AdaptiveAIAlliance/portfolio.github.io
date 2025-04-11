@@ -25,35 +25,10 @@ import {
   setOpenedFolders,
   setRenameName,
   setSelected,
-} from "@/lib/features/file-three/fileThreeSlice";
+} from "@/lib/features/file-tree/fileTreeSlice";
 import { BasicThree } from "@/types/types";
-import { BasicThreeHelper } from "@/lib/helpers/BasicThreeHelper";
-const placeHolderNode = BasicThreeHelper.makeThree({
-  name: "Root",
-  children: [
-    BasicThreeHelper.makeThree({
-      name: "user",
-      children: [
-        BasicThreeHelper.makeThree({ name: "document", children: [] }),
-        BasicThreeHelper.makeThree({ name: "photos", children: [] }),
-      ],
-    }),
-    BasicThreeHelper.makeThree({
-      name: "system",
-      children: [
-        BasicThreeHelper.makeThree({ name: "programs" }),
-        BasicThreeHelper.makeThree({ name: "files" }),
-      ],
-    }),
-    BasicThreeHelper.makeThree({
-      name: "workspace",
-      children: [
-        BasicThreeHelper.makeThree({ name: "project_a", children: [] }),
-        BasicThreeHelper.makeThree({ name: "project_b", children: [] }),
-      ],
-    }),
-  ],
-});
+import { BasicTreeHelper } from "@/lib/helpers/BasicThreeHelper";
+
 export default function FileThree({
   node,
   className,
@@ -64,10 +39,6 @@ export default function FileThree({
   const dispatch = useAppDispatch();
 
   const sliceNode = useAppSelector(selectNode);
-  // const sliceNode = SimpleThree.fromJSON(sliceNodeJSON);
-  // const [files, setFiles] = useState<FileList | null>(null);
-  // const [selected, setSelected] = useState<string>("");
-  // const [openedFolders, setOpenedFolders] = useState<string[]>([]);
   const hasMounted: MutableRefObject<boolean> = useRef(false);
   useEffect(() => {
     if (!hasMounted.current) {
@@ -83,9 +54,7 @@ export default function FileThree({
     const selected = useAppSelector(selectSelected);
     const openedFolders = useAppSelector(selectOpenedFolders);
     const sliceNode = useAppSelector(selectNode);
-    // console.log(sliceNode.toJSON());
 
-    // const sliceNode = SimpleThree.fromJSON(sliceNodeJSON);
     const handleAddItem = (
       name: string,
 
@@ -105,7 +74,7 @@ export default function FileThree({
     };
     const handleRename = () => {
       if (selected !== "") {
-        const target = BasicThreeHelper.findByid(sliceNode, selected);
+        const target = BasicTreeHelper.findByid(sliceNode, selected);
         if (target) {
           dispatch(setSelected(`${target.tag}:rename`));
         }
@@ -142,7 +111,7 @@ export default function FileThree({
     const renameName = useAppSelector(selectRenameName);
     const sliceNode = useAppSelector(selectNode);
 
-    const children = BasicThreeHelper.getChildren(node);
+    const children = BasicTreeHelper.getChildren(node);
 
     const handleOpenFolder = (e: MouseEvent) => {
       dispatch(
@@ -152,31 +121,16 @@ export default function FileThree({
             : [...openedFolders, node.tag]
         )
       );
-      // setOpenedFolders(
-      //   openedFolders.indexOf(node.id) !== -1
-      //     ? openedFolders.filter((id) => id !== node.id)
-      //     : [...openedFolders, node.id]
-      // );
     };
     const handleSelect = (e: MouseEvent) => {
-      console.log(node);
-      console.log(node);
-      console.log(selected);
-      console.log(selected?.split(":")[1]);
-      console.log(selected?.split(":"));
-      console.log(selected?.split(":")[1] === "rename");
-      console.log(selected?.split(":")[0]);
-      console.log(selected?.split(":")[0] === node.tag);
-
       !selected?.split(":")[1] &&
         (selected !== node.tag
           ? dispatch(setSelected(node.tag))
           : dispatch(setSelected("")));
     };
     const isOpen = openedFolders.indexOf(node.tag) !== -1;
-    console.log(BasicThreeHelper.getChildren(node));
 
-    const isFolder = BasicThreeHelper.getChildren(node) !== null;
+    const isFolder = BasicTreeHelper.getChildren(node) !== null;
     return (
       <>
         <details
@@ -218,7 +172,7 @@ export default function FileThree({
                   }}
                   onBlur={(e) => {
                     if (
-                      BasicThreeHelper.getParent(
+                      BasicTreeHelper.getParent(
                         sliceNode,
                         node
                       )?.children?.some((e) => e.name === renameName)
@@ -240,7 +194,11 @@ export default function FileThree({
           </summary>
           {children != null && children.length > 0
             ? children.map((child, index: number) => (
-                <FileThreeContent key={index} node={child} className="pl-4" />
+                <FileThreeContent
+                  key={child.tag}
+                  node={child}
+                  className="pl-4"
+                />
               ))
             : null}
         </details>

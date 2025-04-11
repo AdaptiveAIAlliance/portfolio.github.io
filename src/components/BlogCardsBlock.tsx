@@ -32,7 +32,7 @@ export default function BlogCards(props: Props): ReactElement {
   const posts = props.posts;
   const uiSwitch = props.uiSwitch;
 
-  const contentLength = uiSwitch?.layout === "row" ? 30 : 80;
+  const contentLength = uiSwitch?.layout === "row" ? 30 : 70;
   const BlogCard = ({
     post,
     uiSwitch = {
@@ -65,10 +65,10 @@ export default function BlogCards(props: Props): ReactElement {
             {uiSwitch?.image !== false && (
               <Link href={`/blog/${post.id}`}>
                 <Image
-                  className={`w-full  ${
+                  className={`w-full ${
                     uiSwitch?.layout === "row"
                       ? "rounded-l-2xl"
-                      : "rounded-t-2xl"
+                      : "rounded-t-2xl h-80"
                   }`}
                   width={320}
                   height={320}
@@ -84,8 +84,12 @@ export default function BlogCards(props: Props): ReactElement {
             }`}
           >
             {uiSwitch?.title !== false && (
-              <CardTitle className=" min-h-20 text-xl pb-1 ">
-                <Link href={`/blog/${post.id}`}>{post.title}</Link>
+              <CardTitle className=" min-h-20 text-lg pb-1 ">
+                <Link href={`/blog/${post.id}`}>
+                  {post.title.length >= 60
+                    ? post.title.slice(0, 56) + "..."
+                    : post.title}
+                </Link>
               </CardTitle>
             )}
             {(uiSwitch?.clasification !== false ||
@@ -104,7 +108,7 @@ export default function BlogCards(props: Props): ReactElement {
                               key={c}
                               href={`/category/${c}`}
                             >
-                              {c}
+                              {c.length >= 6 ? c.slice(0, 3) + "..." : c}
                             </Link>
                           ))}
                         </div>
@@ -119,7 +123,7 @@ export default function BlogCards(props: Props): ReactElement {
                               key={t}
                               href={`/tag/${t}`}
                             >
-                              {t}
+                              {t.length >= 6 ? t.slice(0, 3) + "..." : t}
                             </Link>
                           ))}
                         </div>

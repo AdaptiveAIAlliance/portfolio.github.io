@@ -16,6 +16,7 @@ import { badgeVariants } from "@/components/ui/badge";
 import { post } from "@/types/types";
 import { GetStaticPaths, GetStaticProps } from "next";
 import BlogAuthor from "@/components/AuthorBlock";
+import { BlogStyles } from "@/components/style-components/BlogStyles";
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = await getAllPostIds();
   console.log(paths);
@@ -52,7 +53,7 @@ export default function PostPage({ postData }: { postData: post }) {
   return (
     <main className="flex text-neutral-900  dark:text-emerald-100 flex-col justify-between sm:px-24 px-8   pt-32">
       <section className="border-slate-100 border  rounded-3xl overflow-hidden  mb-16 w-full sm:w-full justify-items-start text-neutral-900 bg-clip-padding backdrop-filter backdrop-blur-xl bg-slate-400 dark:bg-emerald-900 bg-opacity-60 dark:bg-opacity-40 dark:border-neutral-950">
-        <div className="h-52 overflow-hidden w-full">
+        <div className="h-64 overflow-hidden w-full">
           <Image
             className="w-full m-auto -translate-y-1/2 object-fill"
             width={320}
@@ -107,7 +108,9 @@ export default function PostPage({ postData }: { postData: post }) {
             ))}
           </div>
         </div>
+        <BlogStyles />
         <div
+          id="content-body"
           className="px-8 pb-8  dark:text-emerald-100 "
           dangerouslySetInnerHTML={{ __html: postData.contentHtml }}
         />
