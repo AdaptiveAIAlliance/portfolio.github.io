@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { profile } from "../configs/profle_data";
-import { ThemeProvider } from "next-themes";
+import { ThemeProvider, useTheme } from "next-themes";
 
 import Header from "@/components/HeaderBar";
 import ThreeFiberScene from "@/components/ThreefiberExample";
 import Head from "next/head";
 import { assetPathResolver } from "@/utils/utils";
+import { useEffect, useRef } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -57,15 +58,28 @@ export default function RootLayout({
           href={assetPathResolver("/favicon.ico")}
           color="#000000"
         />
-        {/* <link rel="icon" href="/favicon.ico" /> */}
       </Head>
       <ThemeProvider attribute="class">
-        <ThreeFiberScene />
-        <Header />
-        {children}
+        <LayoutBody>{children}</LayoutBody>
       </ThemeProvider>
     </>
-    // </body>
-    // </html>
   );
 }
+
+const LayoutBody = ({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  return (
+    <>
+      <div id="root" ref={containerRef}>
+        <Header />
+        {children}
+        <ThreeFiberScene pref={containerRef} />
+      </div>
+    </>
+  );
+};

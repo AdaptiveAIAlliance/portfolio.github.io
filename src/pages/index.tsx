@@ -103,8 +103,8 @@ export default function Home({
       ),
     },
     {
-      title: "UI components",
-      description: "Checkout lates components",
+      title: "UI mini projects",
+      description: "Checkout lates projects",
       content: (
         <div className="flex flex-col w-full justify-between">
           <UIComponentsList paths={data.uiComponentPaths}></UIComponentsList>
@@ -115,7 +115,7 @@ export default function Home({
                 variant: "secondary",
               }
             )} `}
-            href={`/ui-components/`}
+            href={`/ui-mini-projects/`}
           >
             View all
           </Link>
@@ -193,7 +193,7 @@ export default function Home({
                   key={index}
                   className="basis-full p-0 h-fit flex flex-col items-center justify-center"
                 >
-                  <div className="rounded-t-2xl flex flex-col justify-center items-center p-4 pb-2 w-fit h-fit backdrop-filter backdrop-blur-xl bg-slate-200 dark:bg-emerald-900 bg-opacity-40 dark:bg-opacity-40 dark:bg-emerald-800/40">
+                  <div className="rounded-t-2xl flex flex-col justify-center items-center p-4 pb-2 w-fit h-fit backdrop-filter backdrop-blur-xl bg-slate-200 bg-opacity-40 dark:bg-opacity-40 dark:bg-emerald-800/40">
                     <h2 className="block w-max text-xl font-extrabold">
                       {c.title}
                     </h2>

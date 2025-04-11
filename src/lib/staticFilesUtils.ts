@@ -5,7 +5,7 @@ const contentDirectory = path.join(
   process.cwd(),
   "src",
   "pages",
-  "ui-components"
+  "ui-mini-projects"
 );
 export async function getUIComponentData() {
   const uiComponentFiles = fs.readdirSync(contentDirectory);

@@ -1,7 +1,7 @@
 "use client";
 import * as THREE from "three";
 import { createRoot } from "react-dom/client";
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, RefObject } from "react";
 import { Canvas, useFrame, ThreeElements } from "@react-three/fiber";
 import { useGLTF, MeshReflectorMaterial, BakeShadows } from "@react-three/drei";
 import {
@@ -62,7 +62,7 @@ const CameraRig: React.FC = () => {
   return <></>;
 };
 
-const ThreeFiberScene: React.FC = () => {
+const ThreeFiberScene = ({ pref }: { pref: RefObject<HTMLDivElement> }) => {
   const { theme } = useTheme();
 
   const containerRef = useRef<HTMLDivElement>(null);
@@ -74,15 +74,14 @@ const ThreeFiberScene: React.FC = () => {
   }, [theme]);
   return (
     <div
-      className={`fixed -z-50 min-h-full h-full min-w-full`}
-      id="root"
       ref={containerRef}
+      className={`fixed -z-50 min-h-full h-full min-w-full top-0 left-0 right-0 bottom-0`}
     >
       <Canvas
         shadows
         dpr={[1, 1.5]}
         camera={{ position: [-1.5, 1, 5.5], fov: 45, near: 1, far: 20 }}
-        eventSource={containerRef.current ?? undefined}
+        eventSource={pref.current ?? undefined}
         eventPrefix="client"
       >
         {/* Lights */}

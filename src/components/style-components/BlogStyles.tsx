@@ -44,11 +44,17 @@ export const BlogStyles = () => {
         background: rgb(82 82 82 / 0.2);
         margin: 0.5rem;
       }
+
       p code,
       li code {
         background-color: rgb(82 82 82 / 0.2);
         padding: 0.4rem;
         border-radius: 1rem;
+      }
+      pre code{
+        background-color: transparent;
+        padding: 0;
+        border-radius: 0;
       }
     `}</style>
   );
