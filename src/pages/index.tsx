@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import Header from "@/components/HeaderBar";
-import { profile } from "../configs/profle_data";
+import { profile } from "../configs/profile_data";
 import Link from "next/link";
 import ThreeScene from "@/components/ThreeScene";
 import ThreeFiberScene from "@/components/ThreefiberExample";
@@ -54,6 +54,7 @@ import { FcFolder } from "react-icons/fc";
 import UIComponentsList from "@/components/UIComponentsList";
 import GlassContainer from "@/components/GlassContainer";
 import { Github, icons, Linkedin, Mail } from "lucide-react";
+import { DiGithub } from "react-icons/di";
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   // const posts = await getSortedPostsData();
@@ -152,7 +153,7 @@ export default function Home({
               {
                 title: "Github",
                 href: "mailto:your.email@example.com",
-                icon: <Github size={14} />,
+                icon: <DiGithub size={14} />,
               },
             ].map((c, i) => (
               <Button key={i} className="felx gap-x-2 hover:animate-pulse">
@@ -187,19 +188,21 @@ export default function Home({
             <h1 className="fixed top-24 left-1 self-start -rotate-[24deg]  mt-8 ml-4 block [text-shadow:_0_0_20px_rgba(10,10,10,1)] dark:[text-shadow:_0_0_20px_rgba(209,250,229,.8)] text-3xl font-bold font-[cursive]  animate-pulse blur-[1px]  text-neutral-700  dark:text-emerald-700">
               What&apos;s new?
             </h1>
-            <CarouselContent className="rounded-t-2xl  h-[60vh]   w-4/5 m-auto ">
+            <CarouselContent className="rounded-t-2xl h-full min-h-32 sm:h-[60vh]   w-4/5 m-auto ">
               {carouselContent.map((c, index) => (
                 <CarouselItem
                   key={index}
-                  className="basis-full p-0 h-fit flex flex-col items-center justify-center"
+                  className="basis-full p-0 sm:h-fit flex flex-col items-center justify-center"
                 >
-                  <div className="rounded-t-2xl flex flex-col justify-center items-center p-4 pb-2 w-fit h-fit backdrop-filter backdrop-blur-xl bg-slate-200 bg-opacity-40 dark:bg-opacity-40 dark:bg-emerald-800/40">
+                  <div className="rounded-t-2xl flex flex-col justify-center items-center p-4 pb-2 w-fit  backdrop-filter backdrop-blur-xl bg-slate-200 bg-opacity-40 dark:bg-opacity-40 dark:bg-emerald-800/40">
                     <h2 className="block w-max text-xl font-extrabold">
                       {c.title}
                     </h2>
                     <p>{c.description}</p>
                   </div>
-                  <GlassContainer className="">{c.content}</GlassContainer>
+                  <GlassContainer className="h-full min-h-0 max-h-[40vh]">
+                    {c.content}
+                  </GlassContainer>
                 </CarouselItem>
               ))}
             </CarouselContent>

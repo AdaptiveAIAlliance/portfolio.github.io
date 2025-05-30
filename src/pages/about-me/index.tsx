@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import Header from "@/components/HeaderBar";
-import { profile } from "../../configs/profle_data";
+import { profile } from "../../configs/profile_data";
 import Link from "next/link";
 import ThreeScene from "@/components/ThreeScene";
 import ThreeFiberScene from "@/components/ThreefiberExample";

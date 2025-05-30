@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { profile } from "../configs/profle_data";
+import { profile } from "../configs/profile_data";
 import { ThemeProvider, useTheme } from "next-themes";
 
 import Header from "@/components/HeaderBar";

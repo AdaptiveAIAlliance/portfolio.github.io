@@ -25,6 +25,7 @@
     "@react-three/fiber": "^8.16.8",
     "@react-three/postprocessing": "^2.16.2",
     "@reduxjs/toolkit": "^2.6.1",
+    "@tanstack/react-table": "^8.21.3",
     "@types/mdx": "^2.0.13",
     "@types/three": "^0.167.1",
     "class-variance-authority": "^0.7.0",

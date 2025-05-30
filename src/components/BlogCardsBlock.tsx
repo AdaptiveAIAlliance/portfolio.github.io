@@ -145,9 +145,9 @@ export default function BlogCards(props: Props): ReactElement {
 
   return (
     <ol
-      className={` flex w-full  justify-center  sm:flex-row flex-wrap gap-y-2 gap-x-4 lg:px-8 py-4 px-0 overflow-y-scroll ${
+      className={` flex w-full self-center  justify-center  sm:flex-row flex-wrap gap-y-8 gap-x-4 lg:px-8 py-10 px-0 overflow-y-scroll ${
         uiSwitch?.layout === "row"
-          ? "2xl:justify-between  items-center"
+          ? "2xl:justify-between h-96  items-center"
           : " xl:justify-evenly  items-start"
       }`}
     >

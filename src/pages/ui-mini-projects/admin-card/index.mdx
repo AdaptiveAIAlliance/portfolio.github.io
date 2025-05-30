@@ -1,0 +1,48 @@
+import { BlogStyles } from "@/components/style-components/BlogStyles";
+import AdminCard from "@/components/ui-components/AdminCard";
+import { profile } from "@/configs/profile_data";
+import { assetPathResolver } from "@/utils/utils";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
+import Link from "next/link";
+
+export const metadata = {
+  author: "John Doe",
+};
+
+<main className="flex text-neutral-900 dark:text-emerald-100 flex-col justify-between sm:px-24 px-8 pt-32">
+  <BlogStyles />
+  <section className="border-slate-100 border rounded-3xl overflow-hidden mb-16 w-full sm:w-full justify-items-start text-neutral-900 bg-clip-padding backdrop-filter backdrop-blur-xl bg-slate-400 dark:bg-emerald-900 bg-opacity-60 dark:bg-opacity-40 dark:border-neutral-950">
+
+<Breadcrumb className="mx-8">
+  <BreadcrumbList className=" text-neutral-900 dark:text-emerald-100 m-4">
+    <BreadcrumbItem>
+      <BreadcrumbPage className="hover:text-neutral-400">
+        <Link href="/">Home</Link>
+      </BreadcrumbPage>
+    </BreadcrumbItem>
+    <BreadcrumbSeparator />
+    <BreadcrumbItem>
+      <BreadcrumbPage className="hover:text-neutral-400">
+        <Link href="/ui-mini-projects">ui mini projects</Link>
+      </BreadcrumbPage>
+    </BreadcrumbItem>
+    <BreadcrumbSeparator />
+    <BreadcrumbItem>
+      <BreadcrumbPage>Admin Card</BreadcrumbPage>
+    </BreadcrumbItem>
+  </BreadcrumbList>
+</Breadcrumb>
+    <div id="content-body" className="px-8 pb-8 w-full dark:text-emerald-100">
+      <h1 className="text-3xl font-bold mb-4">Admin Card</h1>
+      <p className="mb-4">This project demonstrates an admin card component for showcasing admin profiles with relevant details.</p>
+      <AdminCard name={profile.name} role={"admin"} email={profile.email} profileImage={assetPathResolver("/AAA_profile_pic.png")}  />
+    </div>
+  </section>
+</main>

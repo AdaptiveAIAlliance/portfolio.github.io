@@ -1,6 +1,7 @@
 export const profile = {
   name: "John Due",
   initials: "JD",
+  email: "email@example.com",
   imageSrc: "https://github.com/shadcn.png",
   tagLine: "Innovative Web, App, and Software Developer",
   summery:
