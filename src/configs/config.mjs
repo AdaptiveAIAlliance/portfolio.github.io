@@ -1,6 +1,7 @@
 export const config = {
   isProd: true,
-  basePath: "/portfolio.github.io",
+  // basePath: "/portfolio.github.io",
+  basePath: "",
   mainMeanu: [
     { title: "Home", slug: "/" },
     { title: "Blog", slug: "/blog" },
