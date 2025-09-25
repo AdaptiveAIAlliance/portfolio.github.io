@@ -76,9 +76,9 @@ export default function UICompinentes({ data }: { data: any }) {
 
   return (
     <>
-      <main className="flex text-neutral-900 min-h-screen   dark:text-emerald-100 flex-col justify-center items-center sm:px-0 px-8  ">
+      <main className="flex text-neutral-900 min-h-screen   dark:text-emerald-100 flex-col justify-center items-center px-0 sm:px-8  ">
         <section className="h-screen flex items-center justify-center w-full">
-          <GlassContainer className="w-[80vw] mt-32p">
+          <GlassContainer className="w-full sm:w-[80vw] mt-32p">
             <UIComponentsList paths={data.uiComponentPaths}></UIComponentsList>
           </GlassContainer>
         </section>

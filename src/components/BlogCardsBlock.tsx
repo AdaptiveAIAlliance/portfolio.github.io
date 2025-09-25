@@ -52,7 +52,7 @@ export default function BlogCards(props: Props): ReactElement {
           className={`bg-slate-600/20  overflow-auto rounded-2xl hover:bg-slate-200 hover:bg-opacity-40 duration-300 hover:shadow-lg hover:shadow-slate-200/40 ${
             uiSwitch?.layout === "row"
               ? "flex flex-row justify-between w-60 p-2 sm:p-0 sm:w-96 md:w-[32rem]"
-              : "flex flex-col min-h-72 min-w-[20rem] max-w-[22rem]"
+              : "flex flex-col min-h-72 min-w-56 md:min-w-[20rem] max-w-[22rem]"
           }`}
         >
           <CardHeader
@@ -147,7 +147,7 @@ export default function BlogCards(props: Props): ReactElement {
     <ol
       className={` flex w-full self-center  justify-center  sm:flex-row flex-wrap gap-y-8 gap-x-4 lg:px-8 py-10 px-0 overflow-y-scroll ${
         uiSwitch?.layout === "row"
-          ? "2xl:justify-between h-96  items-center"
+          ? "2xl:justify-between h-full  items-center"
           : " xl:justify-evenly  items-start"
       }`}
     >

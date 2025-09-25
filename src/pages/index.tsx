@@ -83,7 +83,6 @@ export default function Home({
   //   };
   //   load();
   // }, []);
-  console.log(data);
 
   const carouselContent = [
     {
@@ -92,7 +91,7 @@ export default function Home({
 
       content: (
         <BlogCards
-          posts={posts}
+          posts={posts.slice(0, 4)}
           uiSwitch={{
             clasification: false,
             intro: true,
@@ -129,16 +128,16 @@ export default function Home({
       content: (
         <section
           id="contact"
-          className="flex flex-col m-auto w-[32rem] items-center text-center "
+          className="flex flex-col m-auto md:w-[32rem] items-center text-center "
         >
-          <h3 className="text-xl font-bold mb-12 ">Contact Me</h3>
+          <h3 className="text-xl font-bold mb-2 md:mb-12 ">Contact Me</h3>
           <p>
             I&apos;d love to hear from you. Whether you have a project idea, a
             question, or just want to chat, please don&apos;t hesitate to reach
             out.
           </p>
 
-          <div className="contact-details flex gap-8 justify-around flex-wrap mt-10">
+          <div className="contact-details flex flex-row  md:flex-row gap-2 md:gap-8 justify-center md:justify-around flex-wrap mt-2 md:mt-10">
             {[
               {
                 title: "Email",
@@ -170,7 +169,7 @@ export default function Home({
   ];
   return (
     <>
-      <main className="flex text-neutral-900 min-h-screen   dark:text-emerald-100 flex-col justify-center items-center sm:px-0 px-8  ">
+      <main className="flex text-neutral-900 min-h-screen   dark:text-emerald-100 flex-col justify-center items-center px-0 sm:px-8">
         <section className="h-screen flex content-center justify-center w-full">
           <Carousel
             orientation="vertical"
@@ -185,10 +184,10 @@ export default function Home({
             ]}
             className="w-full flex flex-col items-center align-middle justify-center content-center "
           >
-            <h1 className="fixed top-24 left-1 self-start -rotate-[24deg]  mt-8 ml-4 block [text-shadow:_0_0_20px_rgba(10,10,10,1)] dark:[text-shadow:_0_0_20px_rgba(209,250,229,.8)] text-3xl font-bold font-[cursive]  animate-pulse blur-[1px]  text-neutral-700  dark:text-emerald-700">
+            <h1 className="fixed top-24 text-lg left-1 self-start -rotate-[24deg]  mt-8 ml-4 block [text-shadow:_0_0_20px_rgba(10,10,10,1)] dark:[text-shadow:_0_0_20px_rgba(209,250,229,.8)] md:text-3xl font-bold font-[cursive]  animate-pulse blur-[1px]  text-neutral-700  dark:text-emerald-700">
               What&apos;s new?
             </h1>
-            <CarouselContent className="rounded-t-2xl h-full min-h-32 sm:h-[60vh]   w-4/5 m-auto ">
+            <CarouselContent className="rounded-t-2xl h-full min-h-32 sm:h-[60vh] w-full  md:w-8/12 m-auto ">
               {carouselContent.map((c, index) => (
                 <CarouselItem
                   key={index}
@@ -200,7 +199,7 @@ export default function Home({
                     </h2>
                     <p>{c.description}</p>
                   </div>
-                  <GlassContainer className="h-full min-h-0 max-h-[40vh]">
+                  <GlassContainer className="h-full min-h-0 max-h-[48vh] w-full max-w-screen md:w-[] md:min-w-[70vw]">
                     {c.content}
                   </GlassContainer>
                 </CarouselItem>

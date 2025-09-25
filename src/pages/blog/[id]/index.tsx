@@ -51,7 +51,7 @@ export default function PostPage({ postData }: { postData: post }) {
   // const postData: post = await getPostData(params.id);
 
   return (
-    <main className="flex text-neutral-900  dark:text-emerald-100 flex-col justify-between sm:px-24 px-8   pt-32">
+    <main className="flex text-neutral-900  dark:text-emerald-100 flex-col justify-between sm:px-24 px-0   pt-32">
       <section className="border-slate-100 border  rounded-3xl overflow-hidden  mb-16 w-full sm:w-full justify-items-start text-neutral-900 bg-clip-padding backdrop-filter backdrop-blur-xl bg-slate-400 dark:bg-emerald-900 bg-opacity-60 dark:bg-opacity-40 dark:border-neutral-950">
         <div className="h-64 overflow-hidden w-full">
           <Image
@@ -62,7 +62,7 @@ export default function PostPage({ postData }: { postData: post }) {
             alt={postData.alt}
           />
         </div>
-        <Breadcrumb className="mx-8">
+        <Breadcrumb className="mx-2 md:mx-8">
           <BreadcrumbList className=" text-neutral-900 dark:text-emerald-100 m-4">
             <BreadcrumbItem>
               <BreadcrumbPage className="hover:text-neutral-400">
@@ -84,7 +84,7 @@ export default function PostPage({ postData }: { postData: post }) {
         <h1 className="text-2xl p-4  dark:text-emerald-100 ">
           {postData.title}
         </h1>
-        <div className="px-8 py-4  flex flex-row flex-wrap gap-4 justify-start">
+        <div className="px-2 sm:px-8 py-4  flex flex-row flex-wrap gap-4 justify-start">
           <div className=" flex flex-row flex-wrap gap-2">
             {postData.categories.map((c: string) => (
               <Link
@@ -111,10 +111,10 @@ export default function PostPage({ postData }: { postData: post }) {
         <BlogStyles />
         <div
           id="content-body"
-          className="px-8 pb-8  dark:text-emerald-100 "
+          className="px-2 sm:px-8 pb-8 w-full dark:text-emerald-100 "
           dangerouslySetInnerHTML={{ __html: postData.contentHtml }}
         />
-        <div className="px-8 pb-8  dark:text-emerald-100 ">
+        <div className="px-2 sm:px-8 pb-8  dark:text-emerald-100 ">
           <BlogAuthor
             author={postData.author}
             authorImage={postData.authorImage}
